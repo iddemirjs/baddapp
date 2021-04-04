@@ -13,4 +13,6 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="back_purple">#0097A7</color>
+    <color name="login_back">#f3a683</color>
+    <color name="main_back">#cf6a87</color>
 </resources>
