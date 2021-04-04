@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "501426479896",
+    "project_id": "badapp-5d73c",
+    "storage_bucket": "badapp-5d73c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501426479896:android:7577f767fd1043c6c7f46d",
+        "android_client_info": {
+          "package_name": "com.idrisdemir.badapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501426479896-39216bfoqlmoscsqm56sq8qje1rn8s1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB74Gyda5mIcwJAjmr4Wv4A9gCiAuHpSgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "501426479896-39216bfoqlmoscsqm56sq8qje1rn8s1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
