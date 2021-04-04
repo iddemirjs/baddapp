@@ -43,7 +43,7 @@ public class Welcome extends AppCompatActivity {
                 }
                 startActivity(nextStage);
             }
-        },2000);
+        },2500);
     }
 
 }
