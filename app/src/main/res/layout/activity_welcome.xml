@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="68dp"
         android:fontFamily="@font/titillium_web_extralight"
-        android:text="Anil Components"
+        android:text="Anil Connected"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
