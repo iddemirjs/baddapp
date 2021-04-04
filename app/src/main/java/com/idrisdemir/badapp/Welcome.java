@@ -1,4 +1,4 @@
-package com.idrisdemir.badapp.Entity;
+package com.idrisdemir.badapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
