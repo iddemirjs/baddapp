@@ -18,7 +18,7 @@ import com.idrisdemir.badapp.R;
  * status bar and navigation/system bar) with user interaction.
  */
 public class Welcome extends AppCompatActivity {
-    private int loginState = 1;
+    private int loginState = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
