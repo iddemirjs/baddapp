@@ -11,10 +11,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="382dp"
+        android:layout_height="356dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="42dp"
         app:layout_constraintBottom_toTopOf="@+id/logo"
@@ -27,13 +27,13 @@
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="87dp"
+        android:layout_marginBottom="100dp"
         android:fontFamily="@font/titillium_web_extralight"
-        android:text="Derviss"
+        android:text="Bad App"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
