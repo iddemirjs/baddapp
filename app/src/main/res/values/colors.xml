@@ -15,4 +15,8 @@
     <color name="back_purple">#0097A7</color>
     <color name="login_back">#f3a683</color>
     <color name="main_back">#cf6a87</color>
+    <color name="loginbackground5">#5a189a</color>
+    <color name="loginbuttoncolor">#240046</color>
+
+
 </resources>
