@@ -14,7 +14,7 @@ import android.widget.TextView;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class Welcome extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
     private int loginState = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +34,9 @@ public class Welcome extends AppCompatActivity {
             public void run() {
                 Intent nextStage;
                 if (loginState == 0){
-                    nextStage = new Intent(Welcome.this,LoginActivity.class);
+                    nextStage = new Intent(WelcomeActivity.this,LoginActivity.class);
                 }else{
-                    nextStage = new Intent(Welcome.this,MainActivity.class);
+                    nextStage = new Intent(WelcomeActivity.this,MainActivity.class);
                 }
                 startActivity(nextStage);
             }

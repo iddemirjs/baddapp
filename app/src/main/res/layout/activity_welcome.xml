@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/loginbackground5"
     android:theme="@style/ThemeOverlay.BadApp.FullscreenContainer"
-    tools:context=".Welcome">
+    tools:context=".WelcomeActivity">
 
     <ImageView
         android:id="@+id/imageView"
