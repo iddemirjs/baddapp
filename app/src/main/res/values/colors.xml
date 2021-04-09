@@ -18,5 +18,18 @@
     <color name="loginbackground5">#5a189a</color>
     <color name="loginbuttoncolor">#240046</color>
 
+    <!-- Main Colors -->
+
+    <color name="libVioletDark">#55288f</color>
+    <color name="libVioledMid">#6b33b5</color>
+    <color name="libVioletLight">#9c70d7</color>
+    <color name="libVioletDarkSweet">#9643bc</color>
+    <color name="libVioletSweet">#c173e3</color>
+    <color name="libYellow5x">#ffcc01</color>
+    <color name="libYellow4x">#ffd634</color>
+    <color name="libYellow3x">#ffde5d</color>
+    <color name="libYellow2x">#cca300</color>
+
+
 
 </resources>
