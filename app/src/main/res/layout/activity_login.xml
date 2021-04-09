@@ -64,48 +64,45 @@
 
     <TextView
         android:id="@+id/signupmessage"
-        android:layout_width="130dp"
-        android:layout_height="23dp"
+        android:layout_width="137dp"
+        android:layout_height="20dp"
         android:layout_marginTop="72dp"
-        android:text="Don't have an account ?"
+        android:text="Don't have an account ?  |"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintHorizontal_bias="0.341"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginbutton" />
 
-    <Button
-        android:id="@+id/forgotpassword"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="121dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="8dp"
-        android:text="Forgot Password ?"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <Button
-        android:id="@+id/signupnow"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="94dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="60dp"
-        android:paddingLeft="0dp"
-        android:text="| Sign up Now !"
-        android:textAllCaps="false"
+    <TextView
+        android:id="@+id/signup_textbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:clickable="true"
+        android:text="Sign up Now !"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.697"
+        app:layout_constraintHorizontal_bias="0.704"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginbutton" />
+
+    <TextView
+        android:id="@+id/forgotpassword_textbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Forgot Password ?"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
