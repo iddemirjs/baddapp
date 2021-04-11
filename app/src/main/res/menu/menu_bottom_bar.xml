@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cnb_unselectedColor="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@mipmap/ic_home_foreground"
+        app:cnb_backgroundColor="#FFEB3B"
+        app:cnb_iconColor="#673AB7"
+        app:cnb_textColor="#000000" />
+
+
+    <item
+        android:id="@+id/quiz"
+        android:title="Quiz"
+        android:icon="@mipmap/ic_brain_foreground"
+        app:cnb_backgroundColor="#FFEB3B"
+        app:cnb_iconColor="#673AB7"
+        app:cnb_textColor="#000000" />
+
+        />
+    <item
+        android:id="@+id/duel"
+        android:title="Duel"
+        android:icon="@mipmap/ic_duel_foreground"
+        app:cnb_backgroundColor="#FFEB3B"
+        app:cnb_iconColor="#5B3AB7"
+        app:cnb_textColor="#000000"
+        />
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@mipmap/ic_profile_foreground"
+        app:cnb_backgroundColor="#FFEB3B"
+        app:cnb_iconColor="#673AB7"
+        app:cnb_textColor="#000000"
+        />
+
+</menu>
