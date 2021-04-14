@@ -2,9 +2,12 @@ package com.idrisdemir.badapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -15,7 +18,7 @@ import android.widget.TextView;
  * status bar and navigation/system bar) with user interaction.
  */
 public class WelcomeActivity extends AppCompatActivity {
-    private int loginState = 0;
+    private int loginState = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,10 @@ public class WelcomeActivity extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.appName);
         Animation downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
         tv.setAnimation(downtoup);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String loginUser = sharedPref.getString("login","nologin");
+        if (loginUser.equals("nologin")) loginState = 0;
 
         new Handler().postDelayed(new Runnable() {
             @Override
