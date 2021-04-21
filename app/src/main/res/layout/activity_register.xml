@@ -5,7 +5,7 @@
     android:id="@+id/createaccount_button"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/loginbackground5"
+    android:background="@drawable/badappbg"
     tools:context=".RegisterActivity">
 
     <EditText
@@ -75,34 +75,39 @@
 
     <RadioGroup
         android:id="@+id/radio_sex"
-        android:layout_width="211dp"
-        android:layout_height="38dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/register_linetext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_gendertext">
+        app:layout_constraintTop_toBottomOf="@+id/register_passwordagain">
 
         <RadioButton
             android:id="@+id/register_malebutton"
             android:layout_width="103dp"
             android:layout_height="42dp"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
             android:buttonTint="@color/white"
+            android:padding="12dp"
             android:text="Male"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-
-            app:layout_constraintTop_toBottomOf="@+id/register_passwordagain" />
+            android:textAlignment="center"
+            android:textColor="@drawable/radio_text"
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/register_femalebutton"
             android:layout_width="103dp"
             android:layout_height="42dp"
-            android:buttonTint="@color/white"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:padding="12dp"
             android:text="Female"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/register_passwordagain" />
+            android:textAlignment="center"
+            android:textColor="@drawable/radio_text"
+            android:textStyle="bold" />
+
     </RadioGroup>
 
     <TextView
@@ -120,44 +125,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/register_gendertext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Gender"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.167"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_passwordagain" />
-
-    <TextView
-        android:id="@+id/register_linetext"
-        android:layout_width="290dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="84dp"
-        android:text="___________________________"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_passwordagain" />
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="175dp"
         android:layout_height="52dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/loginbuttoncolor"
+        android:layout_marginTop="40dp"
+        android:background="@color/libYellow4x"
         android:text="CREATE ACCOUNT"
-        android:textColor="@color/white"
+        android:textColor="@color/loginbuttoncolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_linetext" />
+        app:layout_constraintTop_toBottomOf="@+id/radio_sex" />
 
     <TextView
         android:id="@+id/register_alreadyhaveanccount"
@@ -175,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginEnd="88dp"
         android:clickable="true"
         android:text="Sign in"
         android:textColor="@color/white"
