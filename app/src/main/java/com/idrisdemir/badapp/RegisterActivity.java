@@ -74,13 +74,12 @@ public class RegisterActivity extends AppCompatActivity {
                 Query query = dbReference.child("users").orderByChild("username")
                                                         .equalTo(user.getUsername());
 
-                final boolean[] canCreatable = {true};
-
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long count = snapshot.getChildrenCount();
-                        if (count==0){
+                        // Gelen verilerin sayısını veren kod.
+                        // long count = snapshot.getChildrenCount();
+                        if (!snapshot.exists()){
                             if (againPassword.equals(password)){
                                 // Userin benzersiz kimliğini oluşturduk.
                                 String uniqueId = UUID.randomUUID().toString();
