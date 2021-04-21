@@ -12,11 +12,14 @@ public abstract class User {
         this.gender = gender;
     }
 
+    private String uuid;
+
     private String username;
 
     private String password;
 
     private String gender;
+
 
     public String getUsername() {
         return username;
@@ -37,4 +40,12 @@ public abstract class User {
     public String getGender() { return gender; }
 
     public void setGender(String gender) { this.gender = gender; }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }

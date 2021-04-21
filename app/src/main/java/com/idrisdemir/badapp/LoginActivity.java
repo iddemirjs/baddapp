@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.commit();
                                 // Local depolayıcımıza kaydettik.
                                 Toast.makeText(LoginActivity.this, member.getUsername()+ " ile login başarılı.", Toast.LENGTH_SHORT).show();
-                                Intent goMain = new Intent(LoginActivity.this,MainActivity.class);
+                                Intent goMain = new Intent(LoginActivity.this, DashboardActivity.class);
                                 startActivity(goMain);
                             }else{
                                 Toast.makeText(LoginActivity.this, "Lütfen bilgilerinizi kontrol ediniz.", Toast.LENGTH_SHORT).show();

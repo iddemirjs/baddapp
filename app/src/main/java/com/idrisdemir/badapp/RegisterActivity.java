@@ -81,7 +81,10 @@ public class RegisterActivity extends AppCompatActivity {
                         // long count = snapshot.getChildrenCount();
                         if (!snapshot.exists()){
                             if (againPassword.equals(password)){
+                                // Userin benzersiz kimliğini oluşturduk.
                                 String uniqueId = UUID.randomUUID().toString();
+                                user.setUuid(uniqueId);
+                                // User veritabanına eklenmeye hazır.
                                 dbReference.child("users").child(uniqueId).setValue(user);
                                 Toast.makeText(RegisterActivity.this, "Üyelik Başarılı", Toast.LENGTH_SHORT).show();
                                 Intent returnRegister = new Intent(RegisterActivity.this,LoginActivity.class);
