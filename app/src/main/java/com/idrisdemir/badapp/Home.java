@@ -1,12 +1,15 @@
 package com.idrisdemir.badapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,13 +55,24 @@ public class Home extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String loginUser = sharedPref.getString("login","nologin");
+
+        TextView usernameTV = (TextView) view.findViewById(R.id.home_top_user_name);
+        TextView userdescriptionTV = (TextView) view.findViewById(R.id.home_top_user_desc);
+        usernameTV.setText(loginUser);
+        userdescriptionTV.setText(loginUser + "@gmail.com");
+        return view;
     }
 }

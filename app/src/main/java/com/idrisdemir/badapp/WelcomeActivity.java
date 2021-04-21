@@ -43,7 +43,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 if (loginState == 0){
                     nextStage = new Intent(WelcomeActivity.this,LoginActivity.class);
                 }else{
-                    nextStage = new Intent(WelcomeActivity.this,MainActivity.class);
+                    nextStage = new Intent(WelcomeActivity.this,DashboardActivity.class);
                 }
                 startActivity(nextStage);
             }

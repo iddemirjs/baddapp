@@ -1,14 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home activity" />
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="574dp">
+
+        <ImageView
+            android:id="@+id/home_top_bg_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/badappbg"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/home_profile_back_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/back_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/home_top_bg_iv"
+            app:layout_constraintStart_toStartOf="@+id/home_top_bg_iv"
+            app:layout_constraintTop_toTopOf="@+id/home_top_bg_iv"
+            app:layout_constraintVertical_bias="0.28" />
+
+        <ImageView
+            android:id="@+id/home_profile_iv"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/profile"
+            app:layout_constraintBottom_toBottomOf="@+id/home_profile_back_iv"
+            app:layout_constraintEnd_toEndOf="@+id/home_profile_back_iv"
+            app:layout_constraintStart_toStartOf="@+id/home_profile_back_iv"
+            app:layout_constraintTop_toTopOf="@+id/home_profile_back_iv" />
+
+        <Button
+            android:id="@+id/home_logout_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_close_user"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/home_top_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/titillium_web_semibold"
+            android:text="name"
+            android:textColor="@color/libWhiteTextFont"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/home_profile_back_iv"
+            app:layout_constraintTop_toTopOf="@+id/home_profile_back_iv" />
+
+        <TextView
+            android:id="@+id/home_top_user_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/titillium_web_italic"
+            android:text="description@description.com"
+            android:textColor="@color/libWhiteTextFont"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@+id/home_profile_back_iv"
+            app:layout_constraintStart_toEndOf="@+id/home_profile_back_iv"
+            app:layout_constraintTop_toBottomOf="@+id/home_top_user_name" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

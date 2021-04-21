@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cnb_unselectedColor="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/home_fr"
         android:icon="@mipmap/ic_home_foreground"
         android:title="Home"
+        android:iconTint="@color/white"
         />
 
     <item
@@ -22,9 +22,6 @@
     <item
         android:id="@+id/profile_fr"
         android:icon="@mipmap/ic_profile_foreground"
-        android:title="Profile"
-        app:cnb_backgroundColor="#FFEB3B"
-        app:cnb_iconColor="#673AB7"
-        app:cnb_textColor="#000000"/>
+        android:title="Profile" />
 
 </menu>
