@@ -1,5 +1,6 @@
 package com.idrisdemir.badapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -55,24 +57,35 @@ public class Home extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
         String loginUser = sharedPref.getString("login","nologin");
 
         TextView usernameTV = (TextView) view.findViewById(R.id.home_top_user_name);
-        TextView userdescriptionTV = (TextView) view.findViewById(R.id.home_top_user_desc);
         usernameTV.setText(loginUser);
-        userdescriptionTV.setText(loginUser + "@gmail.com");
+
+        Button logoutButton = (Button) view.findViewById(R.id.home_logout_button);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("login" , "nologin");
+                editor.commit();
+                Intent goLogin = new Intent(getActivity(),LoginActivity.class);
+                startActivity(goLogin);
+            }
+        });
+
         return view;
     }
 }

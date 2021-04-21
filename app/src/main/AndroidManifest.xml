@@ -14,11 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".DashboardActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity"
+            android:noHistory="true"></activity>
+        <activity android:name=".LoginActivity"
+            android:noHistory="true"/>
         <activity android:name=".WelcomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_welcome"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
