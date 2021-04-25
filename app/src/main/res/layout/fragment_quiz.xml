@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/libVioletLight"
     tools:context=".Quiz">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="quiz fragment" />
+        android:layout_height="540dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="55dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintVertical_bias="0.0">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_geography" />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_history" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_space" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_mathematics" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_sports" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_movie" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_game" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_music" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_literature" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="350dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/buttonimage_science" />
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+
+        android:background="@drawable/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/quiz_energyimage"
+                android:layout_width="36dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="132dp"
+                android:src="@drawable/energybar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.727" />
+
+            <ImageView
+                android:id="@+id/quiz_braincoinimage"
+                android:layout_width="36dp"
+                android:layout_height="32dp"
+                android:src="@drawable/braincoin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/quiz_energyimage"
+                app:layout_constraintHorizontal_bias="0.579"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
