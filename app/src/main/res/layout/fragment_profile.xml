@@ -3,12 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Profile">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="profile fragment" />
+    <androidx.constraintlayout.utils.widget.MotionTelltales
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:background="@color/back_purple"
 
+        >
+    </androidx.constraintlayout.utils.widget.MotionTelltales>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/libBackgroundImageColor"
+        app:tabIndicatorColor="@color/libYellow3x"
+        app:tabIndicatorHeight="5dp"
+        app:tabSelectedTextColor="@color/libYellow4x"
+        app:tabTextColor="@color/white"
+        />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_marginTop="250dp"
+        android:layout_height="match_parent"
+
+        />
 </FrameLayout>

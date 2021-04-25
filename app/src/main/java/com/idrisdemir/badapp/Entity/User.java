@@ -6,7 +6,8 @@ public abstract class User {
 
     }
 
-    public User(String username, String password,String gender) {
+    public User(String username, String password,String gender)
+    {
         this.username = username;
         this.password = password;
         this.gender = gender;
