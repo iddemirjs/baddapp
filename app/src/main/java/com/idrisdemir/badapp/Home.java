@@ -13,12 +13,27 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.idrisdemir.badapp.Adapters.SliderAdapter;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Home#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Home extends Fragment {
+
+    public SliderView home_sliderView;
+    public int[] images = {
+            R.drawable.sil1,
+            R.drawable.sil2,
+            R.drawable.sil3,
+            R.drawable.sil4,
+            R.drawable.sil6,
+            R.drawable.sil5
+    };
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,6 +100,16 @@ public class Home extends Fragment {
                 startActivity(goLogin);
             }
         });
+
+        // Slider Codes
+        home_sliderView = view.findViewById(R.id.home_image_slider);
+
+        SliderAdapter sliderAdapter = new SliderAdapter(images);
+        home_sliderView.setSliderAdapter(sliderAdapter);
+        home_sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        home_sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
+        home_sliderView.startAutoCycle();
+
 
         return view;
     }

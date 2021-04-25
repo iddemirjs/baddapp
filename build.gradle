@@ -17,6 +17,12 @@ allprojects {
     repositories {
         google()
         jcenter()
+        // Bu satırı Slider için ekledim --iddemir
+        maven{
+            url "https://jitpack.io"
+        }
+
+
     }
 }
 
