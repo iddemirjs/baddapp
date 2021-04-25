@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/titillium_web_black</item>
+        <item>@font/titillium_web_bold</item>
         <item>@font/titillium_web_italic</item>
         <item>@font/titillium_web_semibold</item>
     </array>
