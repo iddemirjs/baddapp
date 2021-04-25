@@ -31,8 +31,8 @@ public class Home extends Fragment {
             R.drawable.sil2,
             R.drawable.sil3,
             R.drawable.sil4,
-            R.drawable.sil5,
-            R.drawable.sil6
+            R.drawable.sil6,
+            R.drawable.sil5
     };
 
     // TODO: Rename parameter arguments, choose names that match
