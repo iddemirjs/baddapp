@@ -51,18 +51,18 @@ public class QuizActivity extends AppCompatActivity {
         Hooks();
         questionArrayList=new ArrayList<Question>();
         options=optionMaker(options,"tr1","eng1","brit1","sivas1");
-        questionArrayList.add(new Question("1ankara nerenin baskenti",10,options,111,0));
+        questionArrayList.add(new Question("1ankara nerenin baskenti",50,options,111,"History"));
         options=optionMaker(options,"tr2","eng2","brit2","sivas2");
-        questionArrayList.add(new Question("2ankara nerenin baskenti",10,options,111,0));
+        questionArrayList.add(new Question("2ankara nerenin baskenti",50,options,111,"History"));
         options=optionMaker(options,"tr3","eng3","brit3","sivas3");
-        questionArrayList.add(new Question("3ankara nerenin baskenti",10,options,111,0));
+        questionArrayList.add(new Question("3ankara nerenin baskenti",50,options,111,"History"));
         options=optionMaker(options,"tr4","eng4","brit4","sivas4");
-        questionArrayList.add(new Question("4ankara nerenin baskenti",10,options,111,0));
+        questionArrayList.add(new Question("4ankara nerenin baskenti",50,options,111,"History"));
         questcount.setText(index+1 +"/"+questionArrayList.size());
         //Collections.shuffle(questionArrayList);
         quest=questionArrayList.get(index);
         timerValue=quest.getTime();
-        setQuestion();
+        //setQuestion();
         enableButtons();
         //Timer
         TextView time=findViewById(R.id.timeText);
@@ -84,7 +84,7 @@ public class QuizActivity extends AppCompatActivity {
                     quest = questionArrayList.get(index);
                     timerValue = quest.getTime();
                     resetColor();
-                    setQuestion();
+                    //setQuestion();
                     countDownTimer.start();
                 }
                 else
@@ -108,7 +108,7 @@ public class QuizActivity extends AppCompatActivity {
         card0C=findViewById(R.id.cardC);
         card0D=findViewById(R.id.cardD);
         nextQuestionButton=findViewById(R.id.next_question);
-    }
+    }/*
     private void setQuestion() {
         cardQuestion.setText(quest.getQuestion());
         optionA.setText(quest.getOptions(0));
@@ -116,7 +116,7 @@ public class QuizActivity extends AppCompatActivity {
         optionC.setText(quest.getOptions(2));
         optionD.setText(quest.getOptions(3));
     }
-
+    */
 
     /*
     public void Answer()
@@ -145,7 +145,7 @@ public class QuizActivity extends AppCompatActivity {
             quest=questionArrayList.get(index);
             timerValue=quest.getTime();
             resetColor();
-            setQuestion();
+            //setQuestion();
 
         }
         else

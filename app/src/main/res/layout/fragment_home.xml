@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    tools:context=".Fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -126,6 +126,16 @@
             android:src="@android:drawable/ic_input_add"
             app:layout_constraintStart_toStartOf="@+id/home_profile_back_iv"
             app:layout_constraintTop_toBottomOf="@+id/home_profile_back_iv" />
+
+        <Button
+            android:id="@+id/add_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Question"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_image_slider" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

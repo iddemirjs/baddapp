@@ -1,27 +1,22 @@
-package com.idrisdemir.badapp;
+package com.idrisdemir.badapp.Fragments;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.tabs.TabLayout;
-import com.idrisdemir.badapp.Adapters.ViewPagerAdapter;
-import com.idrisdemir.badapp.Fragments.Account_Fragment;
-import com.idrisdemir.badapp.Fragments.Statistics_Fragment;
+import com.idrisdemir.badapp.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Profile#newInstance} factory method to
+ * Use the {@link DuelFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Profile extends Fragment {
-    TabLayout tab_layout;
-    ViewPager view_pager;
+public class DuelFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,7 +26,7 @@ public class Profile extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Profile() {
+    public DuelFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +36,11 @@ public class Profile extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment profile.
+     * @return A new instance of fragment Duel.
      */
     // TODO: Rename and change types and number of parameters
-    public static Profile newInstance(String param1, String param2) {
-        Profile fragment = new Profile();
+    public static DuelFragment newInstance(String param1, String param2) {
+        DuelFragment fragment = new DuelFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,19 +61,6 @@ public class Profile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_profile, container, false);
-        view_pager=view.findViewById(R.id.view_pager);
-        setUpViewPager(view_pager);
-        tab_layout=view.findViewById(R.id.tab_layout);
-        tab_layout.setupWithViewPager(view_pager);
-
-        return view;
-    }
-
-    private void setUpViewPager(ViewPager view_pager) {
-        ViewPagerAdapter adapter=new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new Statistics_Fragment(), "STATISTIC");
-        adapter.addFragment(new Account_Fragment(), "ACCOUNT");
-        view_pager.setAdapter(adapter);
+        return inflater.inflate(R.layout.fragment_duel, container, false);
     }
 }

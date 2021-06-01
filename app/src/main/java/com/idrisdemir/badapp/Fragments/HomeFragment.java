@@ -1,5 +1,8 @@
-package com.idrisdemir.badapp;
+package com.idrisdemir.badapp.Fragments;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,21 +14,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.idrisdemir.badapp.Adapters.SliderAdapter;
+import com.idrisdemir.badapp.AdministratorActivities.AddQuestionActivity;
+import com.idrisdemir.badapp.LoginActivity;
+import com.idrisdemir.badapp.R;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
+ * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Home extends Fragment {
+public class HomeFragment extends Fragment {
 
     public SliderView home_sliderView;
+    public Button addQuestionButton;
     public int[] images = {
             R.drawable.sil1,
             R.drawable.sil2,
@@ -44,7 +53,7 @@ public class Home extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Home() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -57,8 +66,8 @@ public class Home extends Fragment {
      * @return A new instance of fragment Home.
      */
     // TODO: Rename and change types and number of parameters
-    public static Home newInstance(String param1, String param2) {
-        Home fragment = new Home();
+    public static HomeFragment newInstance(String param1, String param2) {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -83,7 +92,7 @@ public class Home extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String loginUser = sharedPref.getString("login","nologin");
+        String loginUser = sharedPref.getString("login", "nologin");
 
         TextView usernameTV = (TextView) view.findViewById(R.id.home_top_user_name);
         usernameTV.setText(loginUser);
@@ -94,9 +103,9 @@ public class Home extends Fragment {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("login" , "nologin");
+                editor.putString("login", "nologin");
                 editor.commit();
-                Intent goLogin = new Intent(getActivity(),LoginActivity.class);
+                Intent goLogin = new Intent(getActivity(), LoginActivity.class);
                 startActivity(goLogin);
             }
         });
@@ -110,7 +119,38 @@ public class Home extends Fragment {
         home_sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         home_sliderView.startAutoCycle();
 
+        addQuestionButton = (Button) view.findViewById(R.id.add_question);
+
+        addQuestionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAddItemDialog(view.getContext());
+            }
+        });
+
+
 
         return view;
+    }
+
+    private void showAddItemDialog(Context c) {
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Authorization")
+                .setMessage("Please enter administor password?")
+                .setView(taskEditText)
+                .setPositiveButton("Authorize", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String password = String.valueOf(taskEditText.getText());
+                        if (password.equals("123456")){
+                            Intent intent = new Intent(c, AddQuestionActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
     }
 }

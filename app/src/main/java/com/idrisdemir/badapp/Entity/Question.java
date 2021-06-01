@@ -1,23 +1,36 @@
 package com.idrisdemir.badapp.Entity;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@IgnoreExtraProperties
 public class Question {
     private String question;
     private int time;
-    private String[] options;
-    private int categoryId;
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
+    private String categoryName;
     private int value;
 
+    public Question(){
 
-    public Question(String question, int time, String[] options, int categoryId, int value) {
+    }
+
+    public Question(String question, int time, String[] options, int value,String categoryName) {
         this.question = question;
         this.time = time;
-        this.options=new String[options.length];
-        for (int i = 0; i < options.length; i++) {
-
-            this.options[i] = options[i];
-        }
-        this.categoryId = categoryId;
+        this.option1 = options[0];
+        this.option2 = options[1];
+        this.option3 = options[2];
+        this.option4 = options[3];
         this.value = value;
+        this.categoryName = categoryName;
     }
 
     public String getQuestion() {
@@ -32,23 +45,37 @@ public class Question {
         this.time = time;
     }
 
-    public String[] getOptions() {
-        return options;
-    }
-    public String getOptions(int a) {
-        return options[a];
+
+    public String getOption1() {
+        return option1;
     }
 
-    public void setOptions(String[] options) {
-        this.options = options;
+    public void setOption1(String option1) {
+        this.option1 = option1;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public String getOption2() {
+        return option2;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setOption2(String option2) {
+        this.option2 = option2;
+    }
+
+    public String getOption3() {
+        return option3;
+    }
+
+    public void setOption3(String option3) {
+        this.option3 = option3;
+    }
+
+    public String getOption4() {
+        return option4;
+    }
+
+    public void setOption4(String option4) {
+        this.option4 = option4;
     }
 
     public int getValue() {
@@ -62,4 +89,13 @@ public class Question {
     public int getTime() {
         return time;
     }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
 }

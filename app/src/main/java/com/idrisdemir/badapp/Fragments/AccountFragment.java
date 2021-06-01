@@ -12,10 +12,10 @@ import com.idrisdemir.badapp.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Account_Fragment#newInstance} factory method to
+ * Use the {@link AccountFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Account_Fragment extends Fragment {
+public class AccountFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class Account_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Account_Fragment() {
+    public AccountFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class Account_Fragment extends Fragment {
      * @return A new instance of fragment Account_Fragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Account_Fragment newInstance(String param1, String param2) {
-        Account_Fragment fragment = new Account_Fragment();
+    public static AccountFragment newInstance(String param1, String param2) {
+        AccountFragment fragment = new AccountFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
