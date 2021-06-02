@@ -7,134 +7,108 @@
     android:layout_height="match_parent"
     tools:context=".AdministratorActivities.AddQuestionActivity">
 
-  <TextView
-      android:id="@+id/question_tv7"
-      android:layout_width="170dp"
-      android:layout_height="31dp"
-      android:text="Category :"
-      android:textSize="24sp"
-      app:layout_constraintStart_toStartOf="@+id/option3_et"
-      app:layout_constraintTop_toTopOf="@+id/category_spinner" />
-
-  <EditText
-      android:id="@+id/option3_et"
+  <ScrollView
       android:layout_width="match_parent"
-      android:layout_height="44dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="24dp"
-      android:layout_marginEnd="10dp"
-      android:ems="10"
-      android:hint="Option C"
-      android:inputType="textPersonName"
-      app:layout_constraintEnd_toEndOf="@+id/option2_et"
-      app:layout_constraintStart_toStartOf="@+id/option2_et"
-      app:layout_constraintTop_toBottomOf="@+id/option2_et" />
+      android:layout_height="match_parent">
 
-  <EditText
-      android:id="@+id/option2_et"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="24dp"
-      android:layout_marginEnd="10dp"
-      android:hint="Option B"
-      android:inputType="textPersonName"
-      app:layout_constraintEnd_toEndOf="@+id/option1_et"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="@+id/option1_et"
-      app:layout_constraintTop_toBottomOf="@+id/option1_et" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-  <EditText
-      android:id="@+id/option1_et"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="24dp"
-      android:layout_marginEnd="10dp"
-      android:ems="10"
-      android:hint="Option A"
-      android:inputType="textPersonName"
-      app:layout_constraintEnd_toEndOf="@+id/answer_et"
-      app:layout_constraintHorizontal_bias="0.444"
-      app:layout_constraintStart_toStartOf="@+id/answer_et"
-      app:layout_constraintTop_toBottomOf="@+id/answer_et" />
+      <TextView
+          android:id="@+id/add_question_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:text="Add Question Screen"
+          android:textAllCaps="false"
+          android:textColor="@color/libYellow3x"
+          android:textSize="34sp"
+          android:textStyle="bold" />
 
-  <EditText
-      android:id="@+id/answer_et"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="44dp"
-      android:layout_marginEnd="10dp"
-      android:ems="10"
-      android:hint="True Answer"
-      android:inputType="textPersonName"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="@+id/question_et"
-      app:layout_constraintTop_toBottomOf="@+id/question_et" />
+      <EditText
+          android:id="@+id/question_et"
+          android:layout_width="match_parent"
+          android:layout_height="119dp"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="108dp"
+          android:layout_marginEnd="10dp"
+          android:ems="10"
+          android:hint="Please Enter Question"
+          android:inputType="textMultiLine|textPersonName" />
 
-  <Button
-      android:id="@+id/add_question_form_btn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="32dp"
-      android:layout_marginEnd="8dp"
-      android:text="Add Question"
-      app:layout_constraintEnd_toEndOf="@+id/category_spinner"
-      app:layout_constraintTop_toBottomOf="@+id/time_et" />
+      <EditText
+          android:id="@+id/answer_et"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="44dp"
+          android:layout_marginEnd="10dp"
+          android:ems="10"
+          android:hint="True Answer"
+          android:inputType="textPersonName" />
 
-  <TextView
-      android:id="@+id/add_question_title"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Add Question Screen"
-      android:textAllCaps="false"
-      android:textColor="@color/libYellow3x"
-      android:textSize="34sp"
-      android:textStyle="bold"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      <EditText
+          android:id="@+id/option2_et"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="10dp"
+          android:hint="Option B"
+          android:inputType="textPersonName" />
 
-  <EditText
-      android:id="@+id/question_et"
-      android:layout_width="match_parent"
-      android:layout_height="119dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="108dp"
-      android:layout_marginEnd="10dp"
-      android:ems="10"
-      android:hint="Please Enter Question"
-      android:inputType="textMultiLine|textPersonName"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/add_question_title" />
+      <EditText
+          android:id="@+id/option3_et"
+          android:layout_width="match_parent"
+          android:layout_height="44dp"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="10dp"
+          android:ems="10"
+          android:hint="Option C"
+          android:inputType="textPersonName" />
 
-  <Spinner
-      android:id="@+id/category_spinner"
-      android:layout_width="210dp"
-      android:layout_height="30dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="28dp"
-      android:layout_marginEnd="10dp"
-      app:layout_constraintEnd_toEndOf="@+id/option3_et"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="@+id/option3_et"
-      app:layout_constraintTop_toBottomOf="@+id/option3_et" />
+      <EditText
+          android:id="@+id/time_et"
+          android:layout_width="match_parent"
+          android:layout_height="42dp"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="32dp"
+          android:layout_marginEnd="10dp"
+          android:ems="10"
+          android:hint="Time"
+          android:inputType="numberDecimal" />
 
-  <EditText
-      android:id="@+id/time_et"
-      android:layout_width="match_parent"
-      android:layout_height="42dp"
-      android:layout_marginStart="10dp"
-      android:layout_marginTop="32dp"
-      android:layout_marginEnd="10dp"
-      android:ems="10"
-      android:hint="Time"
-      android:inputType="numberDecimal"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/category_spinner" />
+      <EditText
+          android:id="@+id/option1_et"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="24dp"
+          android:layout_marginEnd="10dp"
+          android:ems="10"
+          android:hint="Option A"
+          android:inputType="textPersonName" />
+
+      <Spinner
+          android:id="@+id/category_spinner"
+          android:layout_width="210dp"
+          android:layout_height="30dp"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="28dp"
+          android:layout_marginEnd="10dp" />
+
+      <Button
+          android:id="@+id/add_question_form_btn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="right"
+          android:layout_marginTop="32dp"
+          android:layout_marginEnd="8dp"
+          android:text="Add Question" />
+    </LinearLayout>
+  </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
