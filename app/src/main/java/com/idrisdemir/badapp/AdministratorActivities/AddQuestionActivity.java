@@ -92,7 +92,13 @@ public class AddQuestionActivity extends AppCompatActivity {
 
                 databaseReference.child("questions").child(uniqueId).setValue(newQuestion);
 
+                Toast.makeText(AddQuestionActivity.this, "Succesfully", Toast.LENGTH_SHORT).show();
 
+                questionEditText.setText("");
+                answerEditText.setText("");
+                option1EditText.setText("");
+                option2EditText.setText("");
+                option3EditText.setText("");
 
             }
         });
