@@ -18,6 +18,9 @@
     <color name="loginbackground5">#5a189a</color>
     <color name="loginbuttoncolor">#240046</color>
     <color name="profile_statistic_background">#454545</color>
+    <color name="looserColor">#d71b0b</color>
+    <color name="winnerColor">#2ad50a</color>
+    <color name="drawColor">#0a4fd5</color>
 
     <!-- Main Colors -->
 
