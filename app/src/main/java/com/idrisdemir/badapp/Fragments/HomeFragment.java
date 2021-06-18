@@ -112,7 +112,6 @@ public class HomeFragment extends Fragment {
 
         // Slider Codes
         home_sliderView = view.findViewById(R.id.home_image_slider);
-
         SliderAdapter sliderAdapter = new SliderAdapter(images);
         home_sliderView.setSliderAdapter(sliderAdapter);
         home_sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);

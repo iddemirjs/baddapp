@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.ProfileFragment">
 
     <LinearLayout
@@ -53,21 +53,16 @@
             app:tabIndicatorColor="@color/libYellow3x"
             app:tabIndicatorHeight="5dp"
             app:tabSelectedTextColor="@color/libYellow4x"
-            app:tabTextColor="@color/white"
-            />
+            app:tabTextColor="@color/white" />
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_height="match_parent" />
-
-
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp" />
     </LinearLayout>
 
     <!-- TODO: Update blank fragment layout -->
-
-
-
 
 
 </FrameLayout>

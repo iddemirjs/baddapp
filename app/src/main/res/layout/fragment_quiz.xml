@@ -7,113 +7,20 @@
     android:background="@color/libVioletLight"
     tools:context=".Fragments.QuizFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="540dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="55dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="match_parent"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="54dp">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:id="@+id/quizfragment_recycler">
 
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_geography" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_history" />
-
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_space" />
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_mathematics" />
-
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_sports" />
-
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_movie" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_game" />
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_music" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_literature" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/buttonimage_science" />
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -141,10 +48,10 @@
 
             <TextView
                 android:id="@+id/energy_count"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="51dp"
+                android:layout_marginEnd="120dp"
                 android:text="0"
                 android:textColor="@color/libWhiteTextFont"
                 android:textSize="16sp"
@@ -165,10 +72,10 @@
 
             <TextView
                 android:id="@+id/brain_count"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="185dp"
+                android:layout_marginEnd="255dp"
                 android:text="0"
                 android:textColor="@color/libWhiteTextFont"
                 android:textSize="16sp"

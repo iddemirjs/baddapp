@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
 
     private void setUpViewPager(ViewPager view_pager) {
         ViewPagerAdapter adapter=new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new StatisticsFragment(), "STATISTIC");
+        adapter.addFragment(new StatisticsFragment(), "STATISTICS");
         adapter.addFragment(new AccountFragment(), "ACCOUNT");
         view_pager.setAdapter(adapter);
     }
