@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/button_image"
+        android:layout_width="350dp"
+        android:layout_height="75dp"
+        android:src="@drawable/buttonimage_literature"
+        android:layout_gravity="center"
+        android:clickable="true">
+    </ImageView>
+
+</LinearLayout>

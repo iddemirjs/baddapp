@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.idrisdemir.badapp.Adapters.RecyclerAdapter;
 import com.idrisdemir.badapp.R;
 
 /**
@@ -20,6 +23,19 @@ import com.idrisdemir.badapp.R;
  */
 public class QuizFragment extends Fragment {
 
+    public RecyclerView quiz_recyclerView;
+    public int [] button_images= {
+                    R.drawable.buttonimage_geography,
+                    R.drawable.buttonimage_history,
+                    R.drawable.buttonimage_science,
+                    R.drawable.buttonimage_movie,
+                    R.drawable.buttonimage_space,
+                    R.drawable.buttonimage_mathematics,
+                    R.drawable.buttonimage_sports,
+                    R.drawable.buttonimage_game,
+                    R.drawable.buttonimage_music,
+                    R.drawable.buttonimage_literature
+            };
     public String bCount="235";
     public String eCount="5";
 
@@ -68,7 +84,11 @@ public class QuizFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_quiz,container,false);
-        return inflater.inflate(R.layout.fragment_quiz, container, false);
+        quiz_recyclerView=view.findViewById(R.id.quizfragment_recycler);
+        quiz_recyclerView.setHasFixedSize(true);
+        quiz_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        quiz_recyclerView.setAdapter(new RecyclerAdapter(button_images));
+        return view;
     }
 
     @Override

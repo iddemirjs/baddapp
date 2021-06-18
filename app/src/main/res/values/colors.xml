@@ -18,9 +18,15 @@
     <color name="loginbackground5">#5a189a</color>
     <color name="loginbuttoncolor">#240046</color>
     <color name="profile_statistic_background">#454545</color>
-    <color name="looserColor">#d71b0b</color>
-    <color name="winnerColor">#2ad50a</color>
-    <color name="drawColor">#0a4fd5</color>
+    <color name="redColor">#d71b0b</color>
+    <color name="greenColor">#228E0E</color>
+    <color name="blueColor">#0a4fd5</color>
+    <color name="orangeColor">#E86B0C</color>
+    <color name="turquoiseColor">#1ABAAC</color>
+    <color name="grayColor">#4B504F</color>
+    <color name="PurpleColor">#580C8A</color>
+    <color name="pinkColor">#BC0B66</color>
+
 
     <!-- Main Colors -->
 
