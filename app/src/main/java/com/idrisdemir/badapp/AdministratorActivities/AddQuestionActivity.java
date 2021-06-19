@@ -37,8 +37,6 @@ public class AddQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-
         Query query = databaseReference.child("category").orderByChild("categoryName");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

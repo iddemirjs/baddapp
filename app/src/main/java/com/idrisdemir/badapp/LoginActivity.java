@@ -52,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
                 username = tvUsername.getText().toString();
                 password = tvPassword.getText().toString();
 
-
-
                 if (!username.equals("") && !password.equals("")){
                     Query query = databaseReference.child("users")
                             .orderByChild("username").equalTo(username);

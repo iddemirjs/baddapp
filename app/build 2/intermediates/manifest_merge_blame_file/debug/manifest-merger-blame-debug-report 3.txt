@@ -1,0 +1,161 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.idrisdemir.badapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="25"
+8-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.WAKE_LOCK" />
+11-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:5:5-68
+11-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:5:22-65
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:6:5-67
+12-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:6:22-64
+13
+14    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+15    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[com.google.firebase:firebase-database:19.7.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/24ac034c76dfb1b3647cba84ddb1672b/jetified-firebase-database-19.7.0/AndroidManifest.xml:25:5-79
+16-->[com.google.firebase:firebase-database:19.7.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/24ac034c76dfb1b3647cba84ddb1672b/jetified-firebase-database-19.7.0/AndroidManifest.xml:25:22-76
+17
+18    <application
+18-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:8:5-46:19
+19        android:allowBackup="true"
+19-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:9:9-35
+20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+20-->[androidx.core:core:1.3.1] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/0fd693cbeda8be952cfd72e782f62993/core-1.3.1/AndroidManifest.xml:24:18-86
+21        android:debuggable="true"
+22        android:extractNativeLibs="false"
+23        android:icon="@mipmap/ic_launcher"
+23-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:10:9-43
+24        android:label="@string/app_name"
+24-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:11:9-41
+25        android:roundIcon="@mipmap/ic_launcher_round"
+25-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:12:9-54
+26        android:supportsRtl="true"
+26-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:13:9-35
+27        android:testOnly="true"
+28        android:theme="@style/AppTheme.NoActionBar" >
+28-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:14:9-52
+29        <activity android:name="com.idrisdemir.badapp.AdministratorActivities.AddQuestionActivity" >
+29-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:15:9-16:20
+29-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:15:19-78
+30        </activity>
+31        <activity android:name="com.idrisdemir.badapp.ScoreScreenActivity" />
+31-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:17:9-57
+31-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:17:19-54
+32        <activity
+32-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:18:9-26:20
+33            android:name="com.idrisdemir.badapp.QuizActivity"
+33-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:19:13-41
+34            android:noHistory="true" >
+34-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:20:13-37
+35            <intent-filter>
+35-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:21:14-25:29
+36                <action android:name="android.intent.action.MAIN" />
+36-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:22:17-69
+36-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:22:25-66
+37
+38                <category android:name="android.intent.category.LAUNCHER" />
+38-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:24:17-77
+38-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:24:27-74
+39            </intent-filter>
+40        </activity>
+41        <activity android:name="com.idrisdemir.badapp.DashboardActivity" />
+41-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:27:9-55
+41-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:27:19-52
+42        <activity
+42-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:28:9-30:40
+43            android:name="com.idrisdemir.badapp.RegisterActivity"
+43-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:29:13-45
+44            android:noHistory="true" />
+44-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:30:13-37
+45        <activity
+45-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:31:9-33:40
+46            android:name="com.idrisdemir.badapp.LoginActivity"
+46-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:32:13-42
+47            android:noHistory="true" />
+47-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:33:13-37
+48        <activity
+48-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:34:9-41:20
+49            android:name="com.idrisdemir.badapp.WelcomeActivity"
+49-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:35:13-44
+50            android:configChanges="orientation|keyboardHidden|screenSize"
+50-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:36:13-74
+51            android:label="@string/title_activity_welcome"
+51-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:37:13-59
+52            android:noHistory="true"
+52-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:38:13-37
+53            android:theme="@style/AppTheme.NoActionBar" >
+53-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:39:13-56
+54        </activity>
+55
+56        <meta-data
+56-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:43:9-45:57
+57            android:name="preloaded_fonts"
+57-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:44:13-43
+58            android:resource="@array/preloaded_fonts" />
+58-->/Users/iddemir/Library/Mobile Documents/com~apple~CloudDocs/DEU/DeuCodes/Android/BadApp/app/src/main/AndroidManifest.xml:45:13-54
+59
+60        <service
+60-->[com.google.firebase:firebase-database:19.7.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/24ac034c76dfb1b3647cba84ddb1672b/jetified-firebase-database-19.7.0/AndroidManifest.xml:29:9-35:19
+61            android:name="com.google.firebase.components.ComponentDiscoveryService"
+61-->[com.google.firebase:firebase-database:19.7.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/24ac034c76dfb1b3647cba84ddb1672b/jetified-firebase-database-19.7.0/AndroidManifest.xml:30:13-84
+62            android:directBootAware="true"
+62-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:35:13-43
+63            android:exported="false" >
+63-->[com.google.firebase:firebase-database:19.7.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/24ac034c76dfb1b3647cba84ddb1672b/jetified-firebase-database-19.7.0/AndroidManifest.xml:31:13-37
+64            <meta-data
+64-->[com.google.firebase:firebase-database:19.7.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/24ac034c76dfb1b3647cba84ddb1672b/jetified-firebase-database-19.7.0/AndroidManifest.xml:32:13-34:85
+65                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+65-->[com.google.firebase:firebase-database:19.7.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/24ac034c76dfb1b3647cba84ddb1672b/jetified-firebase-database-19.7.0/AndroidManifest.xml:33:17-109
+66                android:value="com.google.firebase.components.ComponentRegistrar" />
+66-->[com.google.firebase:firebase-database:19.7.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/24ac034c76dfb1b3647cba84ddb1672b/jetified-firebase-database-19.7.0/AndroidManifest.xml:34:17-82
+67            <!--
+68                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
+69                clients to use it as well, by defining this registrar in their own core/common library.
+70            -->
+71            <meta-data
+71-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:43:13-45:85
+72                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
+72-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:44:17-121
+73                android:value="com.google.firebase.components.ComponentRegistrar" />
+73-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:45:17-82
+74        </service>
+75
+76        <activity
+76-->[com.google.android.gms:play-services-base:17.0.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/97762cadcf6efc2fd07f9a69ce6d22a4/jetified-play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+77            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+77-->[com.google.android.gms:play-services-base:17.0.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/97762cadcf6efc2fd07f9a69ce6d22a4/jetified-play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+78            android:exported="false"
+78-->[com.google.android.gms:play-services-base:17.0.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/97762cadcf6efc2fd07f9a69ce6d22a4/jetified-play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+79            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+79-->[com.google.android.gms:play-services-base:17.0.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/97762cadcf6efc2fd07f9a69ce6d22a4/jetified-play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+80
+81        <provider
+81-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:26:9-31:39
+82            android:name="com.google.firebase.provider.FirebaseInitProvider"
+82-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:27:13-77
+83            android:authorities="com.idrisdemir.badapp.firebaseinitprovider"
+83-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:28:13-72
+84            android:directBootAware="true"
+84-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:29:13-43
+85            android:exported="false"
+85-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:30:13-37
+86            android:initOrder="100" />
+86-->[com.google.firebase:firebase-common:19.5.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/6137949eb04c0baf7bc42e782c634fb9/jetified-firebase-common-19.5.0/AndroidManifest.xml:31:13-36
+87
+88        <meta-data
+88-->[com.google.android.gms:play-services-basement:17.0.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/673ad0707d733aa5817b98bae7b95b87/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+89            android:name="com.google.android.gms.version"
+89-->[com.google.android.gms:play-services-basement:17.0.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/673ad0707d733aa5817b98bae7b95b87/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+90            android:value="@integer/google_play_services_version" />
+90-->[com.google.android.gms:play-services-basement:17.0.0] /Users/iddemir/.gradle/caches/transforms-2/files-2.1/673ad0707d733aa5817b98bae7b95b87/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+91    </application>
+92
+93</manifest>
