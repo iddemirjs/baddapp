@@ -11,30 +11,25 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="446dp"
-        android:layout_height="375dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="400dp"
+        android:layout_height="350dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_badapp_main_logo_foreground" />
 
-    <TextView
-        android:id="@+id/appName"
+    <ImageView
+        android:id="@+id/title_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
-        android:fontFamily="@font/titillium_web_extralight"
-        android:text="Bad App"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintStart_toStartOf="@id/logo"
+        app:layout_constraintEnd_toEndOf="@id/logo"
+        app:srcCompat="@drawable/splash_header"
+        tools:layout_editor_absoluteX="48dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
