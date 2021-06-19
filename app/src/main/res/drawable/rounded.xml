@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@color/libBackgroundImageColor" />
-    <corners android:topLeftRadius="24dp"
-        android:topRightRadius="24dp"
-
-        />
     <gradient
         android:startColor="@color/libYellow4x"
         android:endColor="@color/libBackgroundImageColor"
         android:angle="270"
 
         />
+
+    <corners android:topLeftRadius="24dp"
+        android:topRightRadius="24dp"/>
 
 
 </shape>

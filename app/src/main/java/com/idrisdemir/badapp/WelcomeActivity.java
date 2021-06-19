@@ -28,9 +28,9 @@ public class WelcomeActivity extends AppCompatActivity {
         Animation uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
         iv.setAnimation(uptodown);
 
-        TextView tv = (TextView) findViewById(R.id.appName);
+        ImageView title=(ImageView) findViewById(R.id.title_splash);
         Animation downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
-        tv.setAnimation(downtoup);
+        title.setAnimation(downtoup);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String loginUser = sharedPref.getString("login","nologin");
