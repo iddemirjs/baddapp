@@ -1,5 +1,9 @@
 package com.idrisdemir.badapp.Fragments;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Adapters.RecyclerAdapter;
 import com.idrisdemir.badapp.Entity.Category;
 import com.idrisdemir.badapp.Entity.Question;
+import com.idrisdemir.badapp.QuizActivity;
 import com.idrisdemir.badapp.R;
 
 import java.util.ArrayList;
@@ -137,6 +142,27 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
     public void onCategoryClick(int position) {
 
         Log.d("blabla", String.valueOf(position));
+        for (Category tempCategory:categoryList) {
+            if(tempCategory.getCategoryImageId()==position){
+                startQuizAlert(getContext(),tempCategory.getCategoryName());
+            }
+        }
 
+    }
+    private void startQuizAlert(Context c, String categorySelected) {
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Start Quiz")
+                .setMessage("Are you ready to start the test? ")
+                .setPositiveButton("Start", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent=new Intent(getContext(), QuizActivity.class);
+                        intent.putExtra("category_name",categorySelected);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
     }
 }

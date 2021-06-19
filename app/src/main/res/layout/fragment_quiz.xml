@@ -14,9 +14,10 @@
         android:layout_marginBottom="54dp">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/quizfragment_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/quizfragment_recycler">
+            android:clipToPadding="true">
 
         </androidx.recyclerview.widget.RecyclerView>
 
