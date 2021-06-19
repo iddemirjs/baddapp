@@ -171,7 +171,7 @@ public class QuizActivity extends AppCompatActivity {
             lastClicked=null;
         }else{
             resetColorToBlueWhite();
-            card0A.setCardBackgroundColor(getResources().getColor(R.color.libYellow2x));
+            card0A.setCardBackgroundColor(getResources().getColor(R.color.libYellow4x));
             lastClicked="A";
         }
 
@@ -183,7 +183,7 @@ public class QuizActivity extends AppCompatActivity {
             lastClicked=null;
         }else{
             resetColorToBlueWhite();
-            card0B.setCardBackgroundColor(getResources().getColor(R.color.libYellow2x));
+            card0B.setCardBackgroundColor(getResources().getColor(R.color.libYellow4x));
             lastClicked="B";
         }
     }
@@ -193,7 +193,7 @@ public class QuizActivity extends AppCompatActivity {
             lastClicked=null;
         }else {
             resetColorToBlueWhite();
-            card0C.setCardBackgroundColor(getResources().getColor(R.color.libYellow2x));
+            card0C.setCardBackgroundColor(getResources().getColor(R.color.libYellow4x));
             lastClicked="C";
         }
     }
@@ -203,7 +203,7 @@ public class QuizActivity extends AppCompatActivity {
             lastClicked=null;
         }else{
             resetColorToBlueWhite();
-            card0D.setCardBackgroundColor(getResources().getColor(R.color.libYellow2x));
+            card0D.setCardBackgroundColor(getResources().getColor(R.color.libYellow4x));
             lastClicked="D";
         }
     }

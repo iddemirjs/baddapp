@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/libVioletDark"
+    android:background="@drawable/quiz_screen_backgorund"
     android:orientation="vertical"
     tools:context=".QuizActivity">
 
@@ -30,18 +30,20 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/quiz_time_background"
             android:layout_gravity="center_horizontal">
 
             <ProgressBar
                 android:id="@+id/time_progress"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:background="@drawable/circle_shape"
                 android:indeterminate="false"
                 android:max="20"
+                android:layout_gravity="center"
                 android:progressDrawable="@drawable/circle_progress_bar"
                 android:textAlignment="center">
 
@@ -55,19 +57,21 @@
                 android:gravity="center"
                 android:text="0"
                 android:textColor="@color/white"
-
-                android:textSize="24dp"></TextView>
+                android:textSize="24dp"
+                ></TextView>
         </FrameLayout>
 
         <TextView
             android:id="@+id/questionCount"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="10/10"
             android:textColor="@color/white"
             android:textColorHighlight="@color/libVioletDark"
-            android:textSize="20dp">
+            android:textSize="20dp"
+            android:background="@drawable/question_count_bg"
+            android:layout_marginLeft="20dp">
 
         </TextView>
 
@@ -76,18 +80,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/question_background"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="100sp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             app:cardCornerRadius="20dp">
 
@@ -98,7 +101,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="En ibne kimdir ?"
-                android:textColor="@color/black">
+                android:textColor="@color/black"
+                android:textStyle="bold">
 
             </TextView>
 
@@ -107,18 +111,20 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardA"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="50sp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:onClick="optionA_clicked"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/card_optionA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:text="Celal"
                 android:textColor="@color/black">
 
@@ -129,18 +135,20 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardB"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="50sp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:onClick="optionB_clicked"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/card_optionB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:text="Furkan "
                 android:textColor="@color/black">
 
@@ -151,18 +159,20 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardC"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="50sp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:onClick="optionC_clicked"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/card_optionC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:text="Batu"
                 android:textColor="@color/black">
 
@@ -173,18 +183,20 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardD"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="50sp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:onClick="optionD_clicked"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/card_optionD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:text="Obama"
                 android:textColor="@color/black">
 
@@ -194,16 +206,23 @@
 
         <Button
             android:id="@+id/next_question"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="175dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@color/white"
             android:onClick="nextButtonClicked"
-            android:text="Next">
-
-        </Button>
+            android:background="@drawable/loginscreen_edittext_background"
+            android:backgroundTint="@color/libVioletDark"
+            android:text="Next"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radio_sex" />
     </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/footer"></ImageView>
 
 
 </LinearLayout>
