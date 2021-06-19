@@ -5,6 +5,12 @@
         android:topRightRadius="24dp"
 
         />
+    <gradient
+        android:startColor="@color/libYellow4x"
+        android:endColor="@color/libBackgroundImageColor"
+        android:angle="270"
+
+        />
 
 
 </shape>
