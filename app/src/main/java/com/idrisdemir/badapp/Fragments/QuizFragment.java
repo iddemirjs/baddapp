@@ -8,34 +8,37 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Adapters.RecyclerAdapter;
+import com.idrisdemir.badapp.Entity.Category;
+import com.idrisdemir.badapp.Entity.Question;
 import com.idrisdemir.badapp.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link QuizFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class QuizFragment extends Fragment {
+public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategoryListener {
 
+    private ArrayList <Category>categoryList;
+    public DatabaseReference database;
     public RecyclerView quiz_recyclerView;
-    public int [] button_images= {
-                    R.drawable.buttonimage_geography,
-                    R.drawable.buttonimage_history,
-                    R.drawable.buttonimage_science,
-                    R.drawable.buttonimage_movie,
-                    R.drawable.buttonimage_space,
-                    R.drawable.buttonimage_mathematics,
-                    R.drawable.buttonimage_sports,
-                    R.drawable.buttonimage_game,
-                    R.drawable.buttonimage_music,
-                    R.drawable.buttonimage_literature
-            };
+    public ArrayList<Integer> button_images=new ArrayList<Integer>();
     public String bCount="235";
     public String eCount="5";
 
@@ -84,11 +87,41 @@ public class QuizFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_quiz,container,false);
-        quiz_recyclerView=view.findViewById(R.id.quizfragment_recycler);
-        quiz_recyclerView.setHasFixedSize(true);
-        quiz_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        quiz_recyclerView.setAdapter(new RecyclerAdapter(button_images));
+        database= FirebaseDatabase.getInstance().getReference();
+        Query query = database.child("category");
+        query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                categoryList=new ArrayList<Category>();
+                for (DataSnapshot tempCategory: snapshot.getChildren())
+                {
+                    categoryList.add(tempCategory.getValue(Category.class));
+                }
+                startFillingRecyclerView(categoryList,view);
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
         return view;
+    }
+
+    private void startFillingRecyclerView(ArrayList<Category> categoryList,View view)
+    {
+        for (Category temp:categoryList)
+        {
+            button_images.add(temp.getCategoryImageId());
+            quiz_recyclerView=view.findViewById(R.id.quizfragment_recycler);
+            quiz_recyclerView.setHasFixedSize(true);
+            quiz_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            quiz_recyclerView.setAdapter(new RecyclerAdapter(button_images,this));
+        }
     }
 
     @Override
@@ -98,5 +131,12 @@ public class QuizFragment extends Fragment {
         TextView energy_count =(TextView) view.findViewById(R.id.energy_count);
         braincoin_count.setText(bCount);
         energy_count.setText(eCount);
+    }
+
+    @Override
+    public void onCategoryClick(int position) {
+
+        Log.d("blabla", String.valueOf(position));
+
     }
 }

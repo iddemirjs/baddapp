@@ -11,45 +11,64 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.idrisdemir.badapp.Entity.Category;
 import com.idrisdemir.badapp.Fragments.QuizFragment;
 import com.idrisdemir.badapp.R;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>
+import java.util.ArrayList;
+
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>
 {
 
-    int [] data;
+    private ArrayList<Integer> data;
+    private OnCategoryListener onCategoryListener;
 
-    public RecyclerAdapter(int [] data)
+    public RecyclerAdapter(ArrayList <Integer> data,OnCategoryListener onCategoryListener)
     {
+        //this.mOnCategoryListener=mOnCategoryListener;
         this.data=data;
+        this.onCategoryListener=onCategoryListener;
     }
     @NonNull
     @Override
-    public RecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public RecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.button_design,parent,false);
-        ViewHolder viewHolder=new ViewHolder(view);
+        MyViewHolder viewHolder=new MyViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position)
     {
-        holder.buttonimage.setImageResource(data[position]);
+        holder.buttonimage.setImageResource(data.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                onCategoryListener.onCategoryClick(data.get(position));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return data.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public class MyViewHolder extends RecyclerView.ViewHolder
     {
         ImageView buttonimage;
-        public ViewHolder(@NonNull View itemView)
+        public MyViewHolder(@NonNull View itemView)
         {
             super(itemView);
             buttonimage=itemView.findViewById(R.id.button_image);
         }
     }
+
+    public interface OnCategoryListener
+    {
+        public void onCategoryClick(int position);
+    }
 }
+
