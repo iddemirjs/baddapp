@@ -31,6 +31,7 @@
     <!-- Main Colors -->
 
     <color name="libVioletDark">#55288f</color>
+    <color name="libVioletDarker">#41206C</color>
     <color name="libVioledMid">#6b33b5</color>
     <color name="libVioletLight">#9c70d7</color>
     <color name="libVioletDarkSweet">#9643bc</color>
