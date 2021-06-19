@@ -58,9 +58,7 @@ public class QuizActivity extends AppCompatActivity {
             categoryName = bundle.getString("category_name");
         }
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        Query query = databaseReference.child("questions")
-                            .orderByChild("categoryName").equalTo(categoryName);
-
+        Query query = databaseReference.child("questions").orderByChild("categoryName").equalTo(categoryName);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -127,7 +125,8 @@ public class QuizActivity extends AppCompatActivity {
         setQuestion(selectedQuestion.get( currentQuestion ));
     }
 
-    public void enableButtons(){
+    public void enableButtons()
+    {
         card0A.setClickable(true);
         card0B.setClickable(true);
         card0C.setClickable(true);

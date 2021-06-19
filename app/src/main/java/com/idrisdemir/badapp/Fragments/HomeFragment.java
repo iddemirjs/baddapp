@@ -126,9 +126,6 @@ public class HomeFragment extends Fragment {
                 showAddItemDialog(view.getContext());
             }
         });
-
-
-
         return view;
     }
 
