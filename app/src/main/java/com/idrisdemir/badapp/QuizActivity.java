@@ -40,6 +40,7 @@ public class QuizActivity extends AppCompatActivity {
     private String lastClicked=null;
     private DatabaseReference databaseReference;
     private ArrayList<Question> selectedQuestion = new ArrayList<Question>();
+    private String categoryName;
 
     private CountDownTimer countDownTimer;
     private ProgressBar progressBar;
@@ -52,11 +53,13 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         connectAllElements();
         enableButtons();
-
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            categoryName = bundle.getString("category_name");
+        }
         databaseReference = FirebaseDatabase.getInstance().getReference();
-
         Query query = databaseReference.child("questions")
-                            .orderByChild("categoryName").equalTo("Tarih");
+                            .orderByChild("categoryName").equalTo(categoryName);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
