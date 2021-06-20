@@ -77,6 +77,12 @@ public class DuelFragment extends Fragment {
     }
 
     private void setUpViewPager(ViewPager view_pager_duello) {
+        System.out.println("asdasdsaadsadsasdsad");System.out.println("asdasdsaadsadsasdsad");
+        System.out.println("asdasdsaadsadsasdsad");System.out.println("asdasdsaadsadsasdsad");
+        System.out.println("asdasdsaadsadsasdsad");
+        System.out.println("asdasdsaadsadsasdsad");System.out.println("asdasdsaadsadsasdsad");System.out.println("asdasdsaadsadsasdsad");
+
+
         ViewPagerAdapter adapter_duello=new ViewPagerAdapter(getChildFragmentManager());
         adapter_duello.addFragment(new DuelListFragment(), "Active Duels");
         adapter_duello.addFragment(new DuelHistoryFragment(), "Duel History");
