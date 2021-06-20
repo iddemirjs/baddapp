@@ -1,6 +1,8 @@
 package com.idrisdemir.badapp.Entity;
 
-public class QuizResult {
+import java.io.Serializable;
+
+public class QuizResult implements Serializable {
 
     private String uuid;
 
@@ -14,11 +16,17 @@ public class QuizResult {
 
     private String playerName;
 
+    private boolean isSuccess;
+
     private int profit;
+
+    private String challengeUUID;
 
     public QuizResult() {
         this.correctAnswerNumber = 0;
         this.correctAnswerNumber = 0;
+        this.isSuccess = false;
+        this.challengeUUID = null;
     }
 
     public QuizResult(int totalQuestionSize, int correctNumber, int wrongAnswerNumber, String playerName, int profit) {
@@ -76,4 +84,8 @@ public class QuizResult {
     public int getTotalQuestionSize() { return totalQuestionSize; }
 
     public void setTotalQuestionSize(int totalQuestionSize) { this.totalQuestionSize = totalQuestionSize; }
+
+    public boolean isSuccess() { return isSuccess; }
+
+    public void setSuccess(boolean success) { isSuccess = success; }
 }
