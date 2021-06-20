@@ -81,19 +81,21 @@
                             android:layout_height="30dp"
                             android:max="100"
                             android:progress="0"
+                            android:id="@+id/userExperienceProgressBar"
                             android:progressBackgroundTint="@color/libVioletDark"
                             android:progressTint="@color/libYellow5x">
                         </ProgressBar>
+
                         <TextView
-                            android:layout_width="match_parent"
+                            android:id="@+id/percent_level"
+                            android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:fontFamily="@font/titillium_web_black"
-                            android:text="%0"
+                            android:text="%100"
                             android:textColor="@color/white"
                             android:textSize="17dp"
-                            android:textStyle="bold">
-                        </TextView>
+                            android:textStyle="bold"></TextView>
                     </FrameLayout>
                 </LinearLayout>
 
