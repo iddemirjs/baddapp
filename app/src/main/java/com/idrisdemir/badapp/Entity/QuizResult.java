@@ -4,23 +4,29 @@ public class QuizResult {
 
     private String uuid;
 
-    private QuizSchema quizSchema;
+    private int correctAnswerNumber;
 
-    private int correctNumber;
+    private int wrongAnswerNumber;
 
-    private String playerId;
+    private int elapsedTime;
 
-    private int challengeValue;
+    private int totalQuestionSize;
+
+    private String playerName;
+
+    private int profit;
 
     public QuizResult() {
-
+        this.correctAnswerNumber = 0;
+        this.correctAnswerNumber = 0;
     }
 
-    public QuizResult(QuizSchema quizSchema, int correctNumber, String playerId, int challengeValue) {
-        this.quizSchema = quizSchema;
-        this.correctNumber = correctNumber;
-        this.playerId = playerId;
-        this.challengeValue = challengeValue;
+    public QuizResult(int totalQuestionSize, int correctNumber, int wrongAnswerNumber, String playerName, int profit) {
+        this.correctAnswerNumber = correctNumber;
+        this.wrongAnswerNumber = wrongAnswerNumber;
+        this.playerName = playerName;
+        this.profit = profit;
+        this.totalQuestionSize = totalQuestionSize;
     }
 
     public String getUuid() {
@@ -31,35 +37,43 @@ public class QuizResult {
         this.uuid = uuid;
     }
 
-    public QuizSchema getQuizSchema() {
-        return quizSchema;
+    public int getCorrectAnswerNumber() {
+        return correctAnswerNumber;
     }
 
-    public void setQuizSchema(QuizSchema quizSchema) {
-        this.quizSchema = quizSchema;
+    public void setCorrectAnswerNumber(int correctAnswerNumber) { this.correctAnswerNumber = correctAnswerNumber; }
+
+    public void increaseCorrectAnswerNumber() { this.correctAnswerNumber++; }
+
+    public void increaseWrongAnswerNumber() { this.wrongAnswerNumber++; }
+
+    public void addToProfit(int profit) { this.profit += profit; }
+
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public int getCorrectNumber() {
-        return correctNumber;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
-    public void setCorrectNumber(int correctNumber) {
-        this.correctNumber = correctNumber;
+    public int getProfit() {
+        return profit;
     }
 
-    public String getPlayerId() {
-        return playerId;
+    public void setProfit(int profit) {
+        this.profit = profit;
     }
 
-    public void setPlayerId(String playerId) {
-        this.playerId = playerId;
-    }
+    public int getWrongAnswerNumber() { return wrongAnswerNumber; }
 
-    public int getChallengeValue() {
-        return challengeValue;
-    }
+    public void setWrongAnswerNumber(int wrongAnswerNumber) { this.wrongAnswerNumber = wrongAnswerNumber; }
 
-    public void setChallengeValue(int challengeValue) {
-        this.challengeValue = challengeValue;
-    }
+    public int getElapsedTime() { return elapsedTime; }
+
+    public void setElapsedTime(int elapsedTime) { this.elapsedTime = elapsedTime; }
+
+    public int getTotalQuestionSize() { return totalQuestionSize; }
+
+    public void setTotalQuestionSize(int totalQuestionSize) { this.totalQuestionSize = totalQuestionSize; }
 }
