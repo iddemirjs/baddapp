@@ -65,8 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegisterToLogin = (TextView) findViewById(R.id.register_signin);
         final MediaPlayer buttonSound=MediaPlayer.create(this,R.raw.buttonclick2);
 
-
-
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
