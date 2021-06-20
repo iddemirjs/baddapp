@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.idrisdemir.badapp.AdministratorActivities.AddQuestionActivity;
 import com.idrisdemir.badapp.Entity.Question;
+import com.idrisdemir.badapp.Fragments.QuizFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -35,6 +41,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView[] optionsTextViewArray = new TextView[4];
     private CardView card0A,card0B,card0C,card0D;
     private Button nextQuestionButton;
+    private Button exitButton;
     private int index=0;
     private String[] options=new String[4];
     private String lastClicked=null;
@@ -52,9 +59,18 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         connectAllElements();
+        exitButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                exitFromQuizDialog(view.getContext());
+            }
+        });
         enableButtons();
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
+        if(bundle != null)
+        {
             categoryName = bundle.getString("category_name");
         }
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -75,6 +91,27 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void exitFromQuizDialog(Context c)
+    {
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Exit")
+                .setMessage("If you quit the test your energy will be wasted.Are you sure you want to continue?")
+                .setView(taskEditText)
+                .setPositiveButton("Quit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        Intent intent = new Intent(c, DashboardActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
+
 
     private void startGame(ArrayList<Question> questions){
         int i = 1;
@@ -115,14 +152,17 @@ public class QuizActivity extends AppCompatActivity {
     public void nextButtonClicked(View view){
         countDownTimer.cancel();
         resetColorToBlueWhite();
-
         currentQuestion++;
         if (currentQuestion == selectedQuestion.size()) {
             endGame();
             return;
         }
-
         setQuestion(selectedQuestion.get( currentQuestion ));
+    }
+
+    public void exitButtonClicked(View view)
+    {
+
     }
 
     public void enableButtons()
@@ -220,6 +260,7 @@ public class QuizActivity extends AppCompatActivity {
         card0D=findViewById(R.id.cardD);
         timeTV=findViewById(R.id.timeText);
         nextQuestionButton=findViewById(R.id.next_question);
+        exitButton=findViewById(R.id.exit_quiz_screen);
         optionsTextViewArray[0]= optionA;
         optionsTextViewArray[1]= optionB;
         optionsTextViewArray[2]= optionC;
