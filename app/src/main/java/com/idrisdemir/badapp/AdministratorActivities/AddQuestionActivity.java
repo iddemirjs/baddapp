@@ -36,14 +36,16 @@ public class AddQuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Query query = databaseReference.child("category").orderByChild("categoryName");
+        databaseReference=FirebaseDatabase.getInstance().getReference();
+        Query query = databaseReference.child("category");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
                 Category category = new Category();
                 List<String> categoryList = new ArrayList<String>();
-                for (DataSnapshot ss : snapshot.getChildren()) {
+                for (DataSnapshot ss : snapshot.getChildren())
+                {
                     category = ss.getValue(Category.class);
                     Toast.makeText(AddQuestionActivity.this, category.getCategoryName(), Toast.LENGTH_SHORT).show();
                     categoryList.add(category.getCategoryName());

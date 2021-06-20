@@ -34,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     RadioGroup rgSex;
     RadioButton rbSex;
     Button buttonRegister;
+    TextView buttonRegisterToLogin;
     DatabaseReference dbReference;
 
     @Override
@@ -59,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         buttonRegister = (Button) findViewById(R.id.register_button);
+        buttonRegisterToLogin = (TextView) findViewById(R.id.register_signin);
 
 
 
@@ -106,5 +108,17 @@ public class RegisterActivity extends AppCompatActivity {
                 });
             }
         });
+
+        buttonRegisterToLogin.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent goLogin=new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(goLogin);
+            }
+        });
+
+
     }
 }
