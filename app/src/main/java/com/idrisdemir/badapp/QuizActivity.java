@@ -57,13 +57,15 @@ public class QuizActivity extends AppCompatActivity {
     private QuizResult examResult = new QuizResult();
     private CountDownTimer countDownTimer;
     private ProgressBar progressBar;
-    private int deneme=0;
 
     private int currentQuestionNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        System.out.println("asdadsa");
+
         setContentView(R.layout.activity_quiz);
         connectAllElements();
         enableButtons();
