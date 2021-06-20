@@ -57,6 +57,7 @@ public class QuizActivity extends AppCompatActivity {
     private QuizResult examResult = new QuizResult();
     private CountDownTimer countDownTimer;
     private ProgressBar progressBar;
+    private int deneme=0;
 
     private int currentQuestionNumber = 0;
 
