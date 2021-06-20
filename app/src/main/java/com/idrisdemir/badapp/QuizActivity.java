@@ -1,9 +1,12 @@
 package com.idrisdemir.badapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,7 +43,7 @@ public class QuizActivity extends AppCompatActivity {
     private Timer totalTimer;
     private Handler timeHandler;
     private int totalTime = 0;
-
+    private Button exitButton;
 
     private ArrayList<Question> questionArrayList;
     private TextView cardQuestion, optionA, optionB, optionC, optionD, questcount, timeTV;
@@ -63,11 +66,16 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        System.out.println("asdadsa");
-
         setContentView(R.layout.activity_quiz);
         connectAllElements();
+        exitButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                exitFromQuizDialog(view.getContext());
+            }
+        });
         enableButtons();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -189,6 +197,26 @@ public class QuizActivity extends AppCompatActivity {
     private void timeIsUp() {
         nextButtonClicked(nextQuestionButton);
     }
+    private void exitFromQuizDialog(Context c)
+    {
+
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Exit")
+                .setMessage("If you quit the test your energy will be wasted.Are you sure you want to continue?")
+                .setPositiveButton("Quit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        Intent intent = new Intent(c, DashboardActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
+
+
 
     public void endGame() {
         stopTotalTimer();
@@ -258,6 +286,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void connectAllElements() {
+        exitButton=findViewById(R.id.exit_quiz_screen);
         questcount = findViewById(R.id.questionCount);
         progressBar = findViewById(R.id.time_progress);
         cardQuestion = findViewById(R.id.questionCard);

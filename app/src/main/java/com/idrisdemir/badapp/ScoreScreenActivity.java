@@ -3,6 +3,7 @@ package com.idrisdemir.badapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +21,15 @@ public class ScoreScreenActivity extends AppCompatActivity {
         reward=findViewById(R.id.reward_text);
         time=findViewById(R.id.time_text);
         result=findViewById(R.id.result_text);
+        final MediaPlayer buttonSound= MediaPlayer.create(this,R.raw.buttonclick2);
+
         Button rewardOutButton = (Button) findViewById(R.id.exit_winner_screen);
         rewardOutButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                buttonSound.start();
                 Intent goHomeFragment=new Intent(ScoreScreenActivity.this, DashboardActivity.class);
                 startActivity(goHomeFragment);
             }
