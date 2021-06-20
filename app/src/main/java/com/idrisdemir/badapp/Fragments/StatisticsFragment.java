@@ -1,13 +1,24 @@
 package com.idrisdemir.badapp.Fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.idrisdemir.badapp.Entity.Member;
 import com.idrisdemir.badapp.R;
 
 /**
@@ -16,6 +27,10 @@ import com.idrisdemir.badapp.R;
  * create an instance of this fragment.
  */
 public class StatisticsFragment extends Fragment {
+
+    DatabaseReference dbReference;
+    String oldName,uniqueID;
+    Member member;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,9 +73,34 @@ public class StatisticsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistics_, container, false);
+        View view=inflater.inflate(R.layout.fragment_statistics_,container,false);
+        TextView levelText = (TextView) view.findViewById(R.id.levelNumber);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        dbReference  = database.getReference();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        oldName = sharedPref.getString("login","nologin");
+        Query query = dbReference.child("users").orderByChild("username").equalTo(oldName);
+        query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                member = new Member();
+                for (DataSnapshot ss:snapshot.getChildren())
+                {
+                    member = ss.getValue(Member.class);
+                }
+                uniqueID=member.getUuid();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+        return view;
     }
 }
