@@ -1,29 +1,20 @@
-package com.idrisdemir.badapp.Fragments;
+package com.idrisdemir.badapp;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.tabs.TabLayout;
-import com.idrisdemir.badapp.Adapters.ViewPagerAdapter;
-import com.idrisdemir.badapp.CreateDuelFragment;
-import com.idrisdemir.badapp.DuelHistoryFragment;
-import com.idrisdemir.badapp.DuelListFragment;
-import com.idrisdemir.badapp.R;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DuelFragment#newInstance} factory method to
+ * Use the {@link DuelHistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DuelFragment extends Fragment {
-    TabLayout tab_layout_duello;
-    ViewPager view_pager_duello;
+public class DuelHistoryFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +24,7 @@ public class DuelFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public DuelFragment() {
+    public DuelHistoryFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +34,11 @@ public class DuelFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Duel.
+     * @return A new instance of fragment DuelHistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DuelFragment newInstance(String param1, String param2) {
-        DuelFragment fragment = new DuelFragment();
+    public static DuelHistoryFragment newInstance(String param1, String param2) {
+        DuelHistoryFragment fragment = new DuelHistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,20 +59,6 @@ public class DuelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_duel, container, false);
-        view_pager_duello=view.findViewById(R.id.view_pager_duello);
-        setUpViewPager(view_pager_duello);
-        tab_layout_duello=view.findViewById(R.id.tab_layout_duello);
-        tab_layout_duello.setupWithViewPager(view_pager_duello);
-        return view;
-    }
-
-    private void setUpViewPager(ViewPager view_pager_duello) {
-        ViewPagerAdapter adapter_duello=new ViewPagerAdapter(getChildFragmentManager());
-        adapter_duello.addFragment(new DuelListFragment(), "Active Duels");
-        adapter_duello.addFragment(new DuelHistoryFragment(), "Duel History");
-        adapter_duello.addFragment(new CreateDuelFragment(), "Create Duel");
-        view_pager_duello.setAdapter(adapter_duello);
-
+        return inflater.inflate(R.layout.fragment_duel_history, container, false);
     }
 }
