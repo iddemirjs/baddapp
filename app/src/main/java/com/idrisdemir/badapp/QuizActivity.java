@@ -145,6 +145,7 @@ public class QuizActivity extends AppCompatActivity {
                 this.examResult.increaseWrongAnswerNumber();
             }
         }
+        lastClicked = null;
 
         currentQuestionNumber++;
         if (selectedQuestionQueue.isEmpty()) {
