@@ -11,25 +11,24 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="400dp"
+        android:layout_width="300dp"
         android:layout_height="350dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="50dp"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_badapp_main_logo_foreground" />
+        app:srcCompat="@drawable/logo_final" />
 
     <ImageView
         android:id="@+id/title_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintStart_toStartOf="@id/logo"
         app:layout_constraintEnd_toEndOf="@id/logo"
-        app:srcCompat="@drawable/splash_header"
-        tools:layout_editor_absoluteX="48dp" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:srcCompat="@drawable/splash_header" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

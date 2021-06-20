@@ -13,14 +13,16 @@ import com.idrisdemir.badapp.Fragments.HomeFragment;
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
 
 public class ScoreScreenActivity extends AppCompatActivity {
-    private TextView score,time;
+    private TextView reward,time,result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_screen);
-        score=findViewById(R.id.score_text);
+        reward=findViewById(R.id.reward_text);
         time=findViewById(R.id.time_text);
-        final MediaPlayer buttonSound=MediaPlayer.create(this,R.raw.buttonclick2);
+        result=findViewById(R.id.result_text);
+        final MediaPlayer buttonSound= MediaPlayer.create(this,R.raw.buttonclick2);
+
         Button rewardOutButton = (Button) findViewById(R.id.exit_winner_screen);
         rewardOutButton.setOnClickListener(new View.OnClickListener()
         {
