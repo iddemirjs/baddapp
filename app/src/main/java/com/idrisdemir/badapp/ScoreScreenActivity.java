@@ -22,7 +22,6 @@ public class ScoreScreenActivity extends AppCompatActivity {
         time=findViewById(R.id.time_text);
         result=findViewById(R.id.result_text);
         final MediaPlayer buttonSound= MediaPlayer.create(this,R.raw.buttonclick2);
-
         Button rewardOutButton = (Button) findViewById(R.id.exit_winner_screen);
         rewardOutButton.setOnClickListener(new View.OnClickListener()
         {
