@@ -3,13 +3,276 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.AccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="15dp"
+        android:layout_gravity="right"
+        android:padding="20dp"
+        android:backgroundTint="@color/libYellow5x">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDIT"
+            android:textSize="25sp"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:textColor="@color/libVioletDark">
+
+        </TextView>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/edit_icon"
+            android:layout_marginLeft="60dp">
+
+        </ImageView>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Account Fragment"
-        android:gravity="center" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:visibility="invisible"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/libVioletDark"
+                    android:text="Username">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textSize="18dp"
+                    android:textColor="#000000">
+                </TextView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lightGrayColor">
+
+                </View>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/libVioletDark"
+                    android:text="Email">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="18dp"
+                    android:textColor="#000000">
+                </TextView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lightGrayColor">
+
+                </View>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/libVioletDark"
+                    android:text="Password">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textSize="18dp"
+                    android:textColor="#000000">
+                </TextView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lightGrayColor">
+
+                </View>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profileEdittableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:visibility="visible"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/libVioletDark"
+                    android:text="Username">
+                </TextView>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textSize="18dp"
+                    android:textColor="#000000">
+                </EditText>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lightGrayColor">
+
+                </View>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/libVioletDark"
+                    android:text="Email">
+                </TextView>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="18dp"
+                    android:textColor="#000000">
+                </EditText>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lightGrayColor">
+
+                </View>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/libVioletDark"
+                    android:text="Password">
+                </TextView>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textSize="18dp"
+                    android:textColor="#000000">
+                </EditText>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lightGrayColor">
+
+                </View>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/profileSaveButton"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="SAVE"
+                    android:textColor="@color/white"
+                    android:background="@color/libVioletDark">
+
+                </Button>
+
+                <Button
+                    android:id="@+id/profileCancelButton"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:text="CANCEL"
+                    android:textColor="@color/white"
+                    android:background="@color/libVioletDark"
+                    android:layout_marginLeft="10dp">
+
+                </Button>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </FrameLayout>
