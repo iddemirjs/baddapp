@@ -64,7 +64,7 @@
                             android:layout_width="320dp"
                             android:layout_height="30dp"
                             android:max="100"
-                            android:progress="50"
+                            android:progress="0"
                             android:progressBackgroundTint="@color/libVioletDark"
                             android:progressTint="@color/libYellow5x">
                         </ProgressBar>
@@ -73,7 +73,7 @@
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:fontFamily="@font/titillium_web_black"
-                            android:text="%100"
+                            android:text="%0"
                             android:textColor="@color/white"
                             android:textSize="17dp"
                             android:textStyle="bold">
@@ -118,7 +118,7 @@
                             android:layout_gravity="fill"
                             android:fontFamily="@font/titillium_web_black"
                             android:gravity="center"
-                            android:text="20"
+                            android:text="0"
                             android:textColor="@color/libVioletDark"
                             android:textSize="25dp"
                             android:textStyle="bold">
@@ -132,7 +132,7 @@
                             android:layout_gravity="fill"
                             android:fontFamily="@font/titillium_web_black"
                             android:gravity="center"
-                            android:text="20"
+                            android:text="0"
                             android:textColor="@color/libVioletDark"
                             android:textSize="25dp"
                             android:textStyle="bold">
@@ -215,7 +215,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
 
@@ -237,7 +237,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                             <LinearLayout
@@ -258,7 +258,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                             <LinearLayout
@@ -279,7 +279,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                             <LinearLayout
@@ -300,7 +300,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                             <LinearLayout
@@ -321,7 +321,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                             <LinearLayout
@@ -342,7 +342,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                             <LinearLayout
@@ -363,7 +363,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                             <LinearLayout
@@ -384,7 +384,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                             <LinearLayout
@@ -405,7 +405,7 @@
                                     android:layout_height="20dp"
                                     android:layout_gravity="center"
                                     android:textStyle="bold"
-                                    android:text="100">
+                                    android:text="0">
                                 </TextView>
                             </LinearLayout>
                         </LinearLayout>
