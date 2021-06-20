@@ -10,5 +10,29 @@
     <include layout="@layout/toolbar_base">
 
     </include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="54dp"
+        android:orientation="vertical">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_duello"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/libYellow3x"
+            app:tabIndicatorColor="@color/libVioletDark"
+            app:tabIndicatorHeight="50dp"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/libVioletDark" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager_duello"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="0dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

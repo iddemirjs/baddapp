@@ -5,22 +5,17 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Member extends User {
 
+    private int experience;
+
+    private int level;
+
     public Member(){
 
     };
 
-    public Member(String username, String password, String gender,int cash, int experience) {
+    public Member(String username, String password, String gender, int experience) {
         super(username, password, gender);
-        this.cash = cash;
         this.experience = experience;
-    }
-
-    public int getCash() {
-        return cash;
-    }
-
-    public void setCash(int cash) {
-        this.cash = cash;
     }
 
     public int getExperience() {
@@ -30,9 +25,5 @@ public class Member extends User {
     public void setExperience(int experience) {
         this.experience = experience;
     }
-
-    public int cash;
-
-    public int experience;
 
 }
