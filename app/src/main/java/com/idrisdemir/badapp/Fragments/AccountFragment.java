@@ -159,7 +159,6 @@ public class AccountFragment extends Fragment {
                         accountGender.setText("");
                         dbReference.child("users").child(uniqueID).setValue(member);
                         Toast.makeText(getContext(), "Gender has been resetted", Toast.LENGTH_SHORT).show();
-
                     }
                     else {
                         Toast.makeText(getContext(), "Please Enter valid gender(Male or Female)", Toast.LENGTH_SHORT).show();
