@@ -30,8 +30,8 @@ import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    String username,password,againPassword,sex;
-    TextView tvUsername,tvPassword,tvAgainPassword;
+    String username,password,againPassword,sex,email;
+    TextView tvUsername,tvPassword,tvAgainPassword, tvEmail;
     RadioGroup rgSex;
     RadioButton rbSex;
     Button buttonRegister;
@@ -49,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         tvUsername = (TextView) findViewById(R.id.register_username);
         tvPassword = (TextView) findViewById(R.id.register_password);
         tvAgainPassword =  (TextView) findViewById(R.id.register_passwordagain);
+        tvEmail = (TextView) findViewById(R.id.register_email);
         rgSex = (RadioGroup) findViewById(R.id.radio_sex);
 
         rgSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -73,8 +74,9 @@ public class RegisterActivity extends AppCompatActivity {
                 username = tvUsername.getText().toString();
                 password = tvPassword.getText().toString();
                 againPassword = tvAgainPassword.getText().toString();
+                email = tvEmail.getText().toString();
 
-                Member user = new Member(username,password ,sex ,0);
+                Member user = new Member(username,email,password ,sex ,0);
                 Query query = dbReference.child("users").orderByChild("username")
                                                         .equalTo(user.getUsername());
 
