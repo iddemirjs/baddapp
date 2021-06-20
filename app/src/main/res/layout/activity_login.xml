@@ -7,6 +7,46 @@
     android:background="@drawable/badappbg"
     tools:context=".LoginActivity">
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943">
+
+        <TextView
+            android:id="@+id/signupmessage"
+            android:layout_width="138dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="44dp"
+            android:text="Don't have an account ?  |"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintVertical_bias="0.931" />
+
+        <TextView
+            android:id="@+id/signup_textbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:clickable="true"
+            android:text="Sign up Now !"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+
+    </LinearLayout>
+
     <EditText
         android:id="@+id/username"
         android:layout_width="323dp"
@@ -52,38 +92,10 @@
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <TextView
-        android:id="@+id/signupmessage"
-        android:layout_width="138dp"
-        android:layout_height="17dp"
-        android:text="Don't have an account ?  |"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/signup_textbutton"
-        app:layout_constraintHorizontal_bias="0.849"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931" />
-
-    <TextView
-        android:id="@+id/signup_textbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
-        android:clickable="true"
-        android:text="Sign up Now !"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
-
-    <TextView
         android:id="@+id/forgotpassword_textbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Forgot Password ?"
         android:textColor="@color/white"

@@ -139,28 +139,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radio_sex" />
 
-    <TextView
-        android:id="@+id/register_alreadyhaveanccount"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
-        android:text="Already have an account ?  |"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/register_signin"
-        app:layout_constraintTop_toBottomOf="@+id/register_button" />
-
-    <TextView
-        android:id="@+id/register_signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="88dp"
-        android:clickable="true"
-        android:text="Sign in"
-        android:textColor="@color/white"
-        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="600dp">
+
+        <TextView
+            android:id="@+id/register_alreadyhaveanccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account ?  |"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/register_signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text=" Sign in"
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            app:layout_constraintTop_toBottomOf="@+id/register_button" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
