@@ -224,7 +224,7 @@ public class QuizActivity extends AppCompatActivity {
         this.examResult.setTotalQuestionSize(this.selectedQuestion.size());
         String uniqueId = UUID.randomUUID().toString();
         this.examResult.setUuid(uniqueId);
-        double successRate = this.examResult.getCorrectAnswerNumber()/this.examResult.getTotalQuestionSize();
+        double successRate =  Double.valueOf(this.examResult.getCorrectAnswerNumber())/Double.valueOf(this.examResult.getTotalQuestionSize());
         if (successRate >= 0.6) this.examResult.setSuccess(true);
         else this.examResult.setSuccess(false);
         databaseReference.child("quizResults").child(uniqueId).setValue(this.examResult);

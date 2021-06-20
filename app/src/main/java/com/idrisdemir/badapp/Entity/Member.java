@@ -9,11 +9,13 @@ public class Member extends User {
 
     private int level;
 
+    private String email;
+
     public Member(){
 
     };
 
-    public Member(String username, String password, String gender, int experience) {
+    public Member(String username,String email,String password, String gender, int experience) {
         super(username, password, gender);
         this.experience = experience;
     }
