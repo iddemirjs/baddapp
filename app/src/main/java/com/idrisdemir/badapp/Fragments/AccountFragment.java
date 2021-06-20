@@ -32,11 +32,11 @@ import com.idrisdemir.badapp.R;
  */
 public class AccountFragment extends Fragment {
 
-    DatabaseReference dbReference;
-    String gender,password,email;
-    TextView accountGender,accountPassword,accountEmail;
-    String oldGender,oldEmail,oldPassword,oldName,uniqueID;
-    Member member;
+    private DatabaseReference dbReference;
+    private String gender,password,email;
+    private TextView accountGender,accountPassword,accountEmail;
+    private String oldGender,oldEmail,oldPassword,oldName,uniqueID;
+    private Member member;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
