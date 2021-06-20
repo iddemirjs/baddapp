@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -61,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         buttonRegister = (Button) findViewById(R.id.register_button);
         buttonRegisterToLogin = (TextView) findViewById(R.id.register_signin);
+        final MediaPlayer buttonSound=MediaPlayer.create(this,R.raw.buttonclick2);
 
 
 
@@ -89,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 // User veritabanına eklenmeye hazır.
                                 dbReference.child("users").child(uniqueId).setValue(user);
                                 Toast.makeText(RegisterActivity.this, "Üyelik Başarılı", Toast.LENGTH_SHORT).show();
+                                buttonSound.start();
                                 Intent returnRegister = new Intent(RegisterActivity.this,LoginActivity.class);
                                 startActivity(returnRegister);
                             }else{
@@ -114,6 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                buttonSound.start();
                 Intent goLogin=new Intent(RegisterActivity.this,LoginActivity.class);
                 startActivity(goLogin);
             }

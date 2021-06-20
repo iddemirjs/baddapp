@@ -230,6 +230,7 @@ public class QuizActivity extends AppCompatActivity {
         this.examResult.setUuid(uniqueId);
         databaseReference.child("quizResults").child(uniqueId).setValue(this.examResult);
         Intent intent = new Intent(QuizActivity.this, ScoreScreenActivity.class);
+
         startActivity(intent);
     }
 

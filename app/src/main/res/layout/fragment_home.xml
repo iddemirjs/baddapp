@@ -114,6 +114,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/titillium_web_semibold"
             android:text="550"
+            android:paddingLeft="10dp"
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -121,10 +122,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="40dp"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@drawable/braincoin"
             app:layout_constraintStart_toStartOf="@+id/home_profile_back_iv"
             app:layout_constraintTop_toBottomOf="@+id/home_profile_back_iv" />
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         tvUsername = (TextView) findViewById(R.id.username);
         tvPassword = (TextView) findViewById(R.id.password);
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        final MediaPlayer buttonSound=MediaPlayer.create(this,R.raw.buttonclick2);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -70,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.commit();
                                 // Local depolayıcımıza kaydettik.
                                 Toast.makeText(LoginActivity.this, member.getUsername()+ " ile login başarılı.", Toast.LENGTH_SHORT).show();
+                                buttonSound.start();
                                 Intent goMain = new Intent(LoginActivity.this, DashboardActivity.class);
                                 startActivity(goMain);
                             }else{
@@ -95,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
         singUpTB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonSound.start();
                 Intent goRegister = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(goRegister);
             }

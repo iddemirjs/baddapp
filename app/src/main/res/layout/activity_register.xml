@@ -85,25 +85,27 @@
 
         <RadioButton
             android:id="@+id/register_malebutton"
-            android:layout_width="103dp"
-            android:layout_height="42dp"
+            android:layout_width="110dp"
+            android:layout_height="45dp"
             android:background="@drawable/radio_selector"
             android:button="@android:color/transparent"
             android:buttonTint="@color/white"
             android:padding="12dp"
             android:text="Male"
+            android:layout_marginRight="5dp"
             android:textAlignment="center"
             android:textColor="@drawable/radio_text"
             android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/register_femalebutton"
-            android:layout_width="103dp"
-            android:layout_height="42dp"
+            android:layout_width="110dp"
+            android:layout_height="45dp"
             android:background="@drawable/radio_selector"
             android:button="@android:color/transparent"
             android:padding="12dp"
             android:text="Female"
+            android:layout_marginLeft="5dp"
             android:textAlignment="center"
             android:textColor="@drawable/radio_text"
             android:textStyle="bold" />
@@ -112,13 +114,13 @@
 
     <TextView
         android:id="@+id/registertext"
-        android:layout_width="322dp"
-        android:layout_height="53dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:paddingLeft="80dp"
+        android:fontFamily="@font/titillium_web_black"
         android:text="REGISTER"
         android:textColor="@color/white"
-        android:textSize="36sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.471"
@@ -139,28 +141,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radio_sex" />
 
-    <TextView
-        android:id="@+id/register_alreadyhaveanccount"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
-        android:text="Already have an account ?  |"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/register_signin"
-        app:layout_constraintTop_toBottomOf="@+id/register_button" />
-
-    <TextView
-        android:id="@+id/register_signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="88dp"
-        android:clickable="true"
-        android:text="Sign in"
-        android:textColor="@color/white"
-        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="600dp">
+
+        <TextView
+            android:id="@+id/register_alreadyhaveanccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account ?  |"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/register_signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text=" Sign in"
+            android:textColor="@color/white"
+            android:textStyle="bold|italic"
+            app:layout_constraintTop_toBottomOf="@+id/register_button" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

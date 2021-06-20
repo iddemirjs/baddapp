@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -98,6 +99,7 @@ public class HomeFragment extends Fragment {
         usernameTV.setText(loginUser);
 
         Button logoutButton = (Button) view.findViewById(R.id.home_logout_button);
+        final MediaPlayer buttonSound=MediaPlayer.create(getActivity(),R.raw.buttonclick2);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +125,7 @@ public class HomeFragment extends Fragment {
         addQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonSound.start();
                 showAddItemDialog(view.getContext());
             }
         });
@@ -131,15 +134,19 @@ public class HomeFragment extends Fragment {
 
     private void showAddItemDialog(Context c) {
         final EditText taskEditText = new EditText(c);
+        final MediaPlayer buttonSound=MediaPlayer.create(getActivity(),R.raw.buttonclick2);
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("Authorization")
                 .setMessage("Please enter administor password?")
                 .setView(taskEditText)
-                .setPositiveButton("Authorize", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Authorize", new DialogInterface.OnClickListener()
+                {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String password = String.valueOf(taskEditText.getText());
-                        if (password.equals("123456")){
+                        if (password.equals("123456"))
+                        {
+                            buttonSound.start();
                             Intent intent = new Intent(c, AddQuestionActivity.class);
                             startActivity(intent);
                         }
