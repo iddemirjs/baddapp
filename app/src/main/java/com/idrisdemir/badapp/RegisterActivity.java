@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                 againPassword = tvAgainPassword.getText().toString();
                 email = tvEmail.getText().toString();
 
-                Member user = new Member(username,email,password ,sex ,0);
+                Member user = new Member(username,email,password ,sex ,0,1);
                 Query query = dbReference.child("users").orderByChild("username")
                                                         .equalTo(user.getUsername());
 
