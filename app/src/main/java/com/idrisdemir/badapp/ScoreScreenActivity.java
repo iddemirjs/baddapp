@@ -25,7 +25,7 @@ public class ScoreScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent goHomeFragment=new Intent(ScoreScreenActivity.this, HomeFragment.class);
+                Intent goHomeFragment=new Intent(ScoreScreenActivity.this, DashboardActivity.class);
                 startActivity(goHomeFragment);
             }
         });
