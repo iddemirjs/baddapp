@@ -49,7 +49,8 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
     public DatabaseReference database;
     public RecyclerView quiz_recyclerView;
     public ArrayList<Integer> button_images=new ArrayList<Integer>();
-    TextView braincoin,energycount;
+    private int player_energy;
+    private TextView braincoin,energycount;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -148,7 +149,7 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 EnergyTrade temp1=new EnergyTrade();
-                int player_energy=0;
+                player_energy=0;
                 for (DataSnapshot ss:snapshot.getChildren()) {
                     temp1 = ss.getValue(EnergyTrade.class);
                     player_energy+=temp1.getEnergyPiece();
@@ -188,9 +189,15 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
     @Override
     public void onCategoryClick(int position)
     {
-        for (Category tempCategory:categoryList) {
-            if(tempCategory.getCategoryImageId()==position){
+        for (Category tempCategory:categoryList)
+        {
+            if(tempCategory.getCategoryImageId()==position && player_energy>0)
+            {
                 startQuizAlert(getContext(),tempCategory.getCategoryName());
+            }
+            if(player_energy<=0)
+            {
+                Toast.makeText(getContext(), "You don't have energy enough", Toast.LENGTH_SHORT).show();
             }
         }
     }

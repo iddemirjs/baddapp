@@ -21,15 +21,6 @@ public class DashboardActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.dervisComlek);
         NavController navController = Navigation.findNavController(this,  R.id.fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
-        //Log.d("resim ids", String.valueOf(R.drawable.buttonimage_sports));
-       // Log.d("resim ids", String.valueOf(R.drawable.buttonimage_geography));
-        Log.d("resim ids", String.valueOf(R.drawable.buttonimage_sports));
-        Log.d("resim ids", String.valueOf(R.drawable.buttonimage_movie));
-        Log.d("resim ids", String.valueOf(R.drawable.buttonimage_science));
-        Log.d("resim ids", String.valueOf(R.drawable.buttonimage_game));
-        Log.d("resim ids", String.valueOf(R.drawable.buttonimage_music));
-        Log.d("resim ids", String.valueOf(R.drawable.buttonimage_literature));
-
 
 
     }
