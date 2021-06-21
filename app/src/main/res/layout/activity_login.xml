@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
@@ -23,27 +23,16 @@
 
         <TextView
             android:id="@+id/signupmessage"
-            android:layout_width="138dp"
+            android:layout_width="match_parent"
             android:layout_height="17dp"
-            android:layout_marginStart="44dp"
-            android:text="Don't have an account ?  |"
+            android:text="Don't have an account?"
             android:textColor="@color/white"
             android:textSize="12sp"
+            android:layout_gravity="center"
+            android:gravity="center"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintVertical_bias="0.931" />
-
-        <TextView
-            android:id="@+id/signup_textbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="100dp"
-            android:clickable="true"
-            android:text="Sign up Now !"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout" />
 
     </LinearLayout>
 
@@ -114,6 +103,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_badapp_main_logo_foreground" />
+
+    <TextView
+        android:id="@+id/signup_textbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Sign up Now !"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
