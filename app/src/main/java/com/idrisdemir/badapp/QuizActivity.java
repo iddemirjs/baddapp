@@ -63,6 +63,7 @@ public class QuizActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private ProgressBar progressBar;
     private GameManagement gameManager;
+    private int questionSize=10;
 
     private int currentQuestionNumber = 0;
 
@@ -85,6 +86,7 @@ public class QuizActivity extends AppCompatActivity {
             BadGame badGame = (BadGame) getIntent().getSerializableExtra("bad_game");
             if (badGame != null){
                 this.examResult.setChallengeUUID(badGame.getUuid());
+                this.questionSize = badGame.getQuestionSize();
             }
         }
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -120,7 +122,7 @@ public class QuizActivity extends AppCompatActivity {
         for (Question q : questions) {
             selectedQuestion.add(q);
             selectedQuestionQueue.add(q);
-            if (i == 10) break;
+            if (i == questionSize) break;
             i++;
         }
         startTotalTimer();
