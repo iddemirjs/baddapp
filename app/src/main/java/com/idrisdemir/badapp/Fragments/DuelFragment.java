@@ -1,20 +1,34 @@
 package com.idrisdemir.badapp.Fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Adapters.ViewPagerAdapter;
 import com.idrisdemir.badapp.CreateDuelFragment;
 import com.idrisdemir.badapp.DuelHistoryFragment;
 import com.idrisdemir.badapp.DuelListFragment;
+import com.idrisdemir.badapp.Entity.CoinTrade;
+import com.idrisdemir.badapp.Entity.EnergyTrade;
 import com.idrisdemir.badapp.R;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +38,7 @@ import com.idrisdemir.badapp.R;
 public class DuelFragment extends Fragment {
     TabLayout tab_layout_duello;
     ViewPager view_pager_duello;
+    TextView braincoin,energycount;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -73,6 +88,52 @@ public class DuelFragment extends Fragment {
         setUpViewPager(view_pager_duello);
         tab_layout_duello=view.findViewById(R.id.tab_layout_duello);
         tab_layout_duello.setupWithViewPager(view_pager_duello);
+        braincoin=view.findViewById(R.id.brain_count);
+        energycount=view.findViewById(R.id.energy_count);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        String oldName = sharedPref.getString("login","nologin");
+        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
+
+        Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
+        coinQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CoinTrade temp=new CoinTrade();
+                int player_coin=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp = ss.getValue(CoinTrade.class);
+                    player_coin+=temp.getAmount();
+                }
+                System.out.println();
+                braincoin.setText(String.valueOf(player_coin));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Query energyQuery = databaseReference.child("energyTrades").orderByChild("username").equalTo(oldName);
+        energyQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                EnergyTrade temp1=new EnergyTrade();
+                int player_energy=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp1 = ss.getValue(EnergyTrade.class);
+                    player_energy+=temp1.getEnergyPiece();
+                }
+                System.out.println();
+                energycount.setText(String.valueOf(player_energy));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         return view;
     }
 
