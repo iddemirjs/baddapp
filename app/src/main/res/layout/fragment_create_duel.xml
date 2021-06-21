@@ -64,12 +64,16 @@
             android:textSize="15sp"
             android:textColor="@color/redColor"
             android:text="*Please type a mount of money"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Player size: "
-            android:textStyle="bold"
-            android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Player size: "
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,6 +95,29 @@
                 android:max="0"
                 />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cost of duel: "
+                android:textStyle="bold"
+                android:layout_gravity=""
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/cost_of_duel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +148,12 @@
 
 
         </LinearLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cost of duel: "
+            android:textStyle="bold"
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/make_duel_button"
