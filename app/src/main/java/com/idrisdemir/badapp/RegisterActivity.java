@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.idrisdemir.badapp.Entity.EnergyTrade;
 import com.idrisdemir.badapp.Entity.Member;
 
 import org.w3c.dom.Text;
@@ -90,6 +91,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 user.setUuid(uniqueId);
                                 // User veritabanına eklenmeye hazır.
                                 dbReference.child("users").child(uniqueId).setValue(user);
+                                EnergyTrade energyTrade = new EnergyTrade();
+                                energyTrade.setUuid(UUID.randomUUID().toString());
+                                energyTrade.setUsername(user.getUsername());
+                                energyTrade.setEnergyPiece(5);
+                                energyTrade.setTradeType("profit");
+                                dbReference.child("energyTrades").child(energyTrade.getUuid()).setValue(energyTrade);
                                 Toast.makeText(RegisterActivity.this, "Üyelik Başarılı", Toast.LENGTH_SHORT).show();
                                 buttonSound.start();
                                 Intent returnRegister = new Intent(RegisterActivity.this,LoginActivity.class);
