@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="2dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="380dp"
@@ -27,16 +27,16 @@
                 android:layout_height="35dp"
                 android:background="@drawable/braincoin">
             </ImageView>
+
             <TextView
+                android:id="@+id/duel_Braincoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="100"
-                android:textStyle="bold"
-                android:id="@+id/duel_Braincoin"
                 android:textColor="@color/white"
                 android:textSize="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
@@ -97,16 +97,15 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/duel_Category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/libYellow5x"
-            android:textStyle="bold"
-            android:text="Geography"
-            android:textSize="25dp"
-            android:id="@+id/duel_Category"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="7dp"
-            android:layout_marginLeft="20dp">
-        </TextView>
+            android:text="Geography"
+            android:textColor="@color/libYellow5x"
+            android:textSize="25dp"
+            android:textStyle="bold"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
