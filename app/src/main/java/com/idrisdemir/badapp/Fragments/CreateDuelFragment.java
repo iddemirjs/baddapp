@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Entity.BadGame;
 import com.idrisdemir.badapp.Entity.Category;
 import com.idrisdemir.badapp.Entity.CoinTrade;
+import com.idrisdemir.badapp.Entity.EnergyTrade;
 import com.idrisdemir.badapp.QuizActivity;
 import com.idrisdemir.badapp.R;
 
@@ -52,7 +54,7 @@ public class CreateDuelFragment extends Fragment {
     private Button make_match;
     private String oldName;
     private Spinner spinner2;
-    private int max_player=10,typed_coin=0,player_coin=0;
+    private int max_player=10,typed_coin=0,player_coin=0,player_energy=0;
     //private int max_player=10;
     private DatabaseReference databaseReference;
     Activity currentActivity;
@@ -143,12 +145,29 @@ public class CreateDuelFragment extends Fragment {
             }
         });
 
+        Query energyQuery = databaseReference.child("energyTrades").orderByChild("username").equalTo(oldName);
+        energyQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                EnergyTrade temp1=new EnergyTrade();
+                player_energy=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp1 = ss.getValue(EnergyTrade.class);
+                    player_energy+=temp1.getEnergyPiece();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         make_match.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(typed_coin<=player_coin && seekbar_player_count.getProgress()>0){
-
+                if(typed_coin<=player_coin && seekbar_player_count.getProgress()>0 && player_energy>0)
+                {
                     AlertDialog dialog = new AlertDialog.Builder(getContext())
                             .setTitle("Start Duello")
                             .setMessage("Are sure about create a Duello? ")
@@ -169,6 +188,10 @@ public class CreateDuelFragment extends Fragment {
                             .setNegativeButton("Cancel", null)
                             .create();
                     dialog.show();
+                }
+                else if(player_energy<=0)
+                {
+                    Toast.makeText(getContext(), "You don't have energy enough", Toast.LENGTH_SHORT).show();
                 }
             }
         });
