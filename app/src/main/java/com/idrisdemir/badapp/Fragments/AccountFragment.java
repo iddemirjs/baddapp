@@ -91,6 +91,10 @@ public class AccountFragment extends Fragment {
         Button editButton = (Button) view.findViewById(R.id.editButton);
         Button cancelButton = (Button) view.findViewById(R.id.profileCancelButton);
         Button saveButton = (Button) view.findViewById(R.id.profileSaveButton);
+        TextView userName=(TextView) view.findViewById(R.id.profileScreenUsername);
+        TextView userPassword=(TextView) view.findViewById(R.id.profileScreenPassword);
+        TextView userEmail=(TextView) view.findViewById(R.id.profileScreenEmail);
+        TextView userGender=(TextView) view.findViewById(R.id.profileScreenGender);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         oldName = sharedPref.getString("login","nologin");
         LinearLayout informationsLayout = (LinearLayout) view.findViewById(R.id.accountInformationsLayout);
@@ -107,6 +111,10 @@ public class AccountFragment extends Fragment {
                     member = ss.getValue(Member.class);
                 }
                 uniqueID=member.getUuid();
+                userName.setText(member.getUsername());
+                userPassword.setText(member.getPassword());
+                userEmail.setText(member.getEmail());
+                userGender.setText(member.getGender());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error)
@@ -148,7 +156,7 @@ public class AccountFragment extends Fragment {
                 {
                     member.setPassword(password);
                     dbReference.child("users").child(uniqueID).setValue(member);
-                    Toast.makeText(getContext(), "Password has been resetted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Password has been reset", Toast.LENGTH_SHORT).show();
                     accountPassword.setText("");
                 }
                 if(!(member.getGender().equalsIgnoreCase(gender)))
@@ -158,16 +166,21 @@ public class AccountFragment extends Fragment {
                         member.setGender(gender);
                         accountGender.setText("");
                         dbReference.child("users").child(uniqueID).setValue(member);
-                        Toast.makeText(getContext(), "Gender has been resetted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Gender has been reset", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         Toast.makeText(getContext(), "Please Enter valid gender(Male or Female)", Toast.LENGTH_SHORT).show();
                     }
                 }
+                if(!(member.getEmail().equalsIgnoreCase(email)))
+                {
+                    member.setEmail(email);
+                    dbReference.child("users").child(uniqueID).setValue(member);
+                    Toast.makeText(getContext(), "Email has been reset", Toast.LENGTH_SHORT).show();
+                    accountEmail.setText("");
+                }
             }
         });
-
-
         return view;
     }
 

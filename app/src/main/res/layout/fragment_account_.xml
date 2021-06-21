@@ -76,7 +76,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/libVioletDark"
-                    android:id="@+id/profileScreenEmail"
                     android:text="Email">
                 </TextView>
 
@@ -85,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:text="Email"
                     android:textSize="18dp"
+                    android:id="@+id/profileScreenEmail"
                     android:textColor="#000000">
                 </TextView>
 
@@ -107,7 +107,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/libVioletDark"
-                    android:id="@+id/profileScreenGender"
                     android:text="Gender">
                 </TextView>
 
@@ -116,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="Gender"
                     android:textSize="18dp"
+                    android:id="@+id/profileScreenGender"
                     android:textColor="#000000">
                 </TextView>
 
@@ -224,7 +224,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint=" Change Gender"
+                    android:hint="Change Gender"
                     android:background="@null"
                     android:textSize="17dp"
                     android:id="@+id/newGender"
