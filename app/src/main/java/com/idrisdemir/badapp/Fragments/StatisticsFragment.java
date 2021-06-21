@@ -39,6 +39,7 @@ public class StatisticsFragment extends Fragment {
     private QuizResult result;
     private int wincount=0;
     private int lostcount=0;
+    TextView mathTv, historyTv, spaceTv, movieTv, scienceTv, geographyTv, gameTv, sportTv, literatureTv, musicTv;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -123,6 +124,17 @@ public class StatisticsFragment extends Fragment {
         ProgressBar userProgress=(ProgressBar) view.findViewById(R.id.userExperienceProgressBar);
         TextView winCount=(TextView) view.findViewById(R.id.winCount);
         TextView loseCount=(TextView) view.findViewById(R.id.lostCount);
+        mathTv=view.findViewById(R.id.mathematic_correctCount);
+        historyTv=view.findViewById(R.id.history_correctCount);
+        spaceTv=view.findViewById(R.id.space_correctCount);
+        movieTv=view.findViewById(R.id.movie_correctCount);
+        scienceTv=view.findViewById(R.id.science_correctCount);
+        geographyTv=view.findViewById(R.id.geography_correctCount);
+        gameTv=view.findViewById(R.id.game_correctCount);
+        sportTv=view.findViewById(R.id.sports_correctCount);
+        literatureTv=view.findViewById(R.id.literature_correctCount);
+        musicTv=view.findViewById(R.id.music_correctCount);
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         dbReference  = database.getReference();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
@@ -157,6 +169,10 @@ public class StatisticsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
                 result=new QuizResult();
+                int math=0,
+                        history=0,
+                        space=0,
+                        movie=0,science=0,geography=0,game=0,sport=0,literature=0,music=0;
                 for (DataSnapshot ss:snapshot.getChildren())
                 {
                     result= ss.getValue(QuizResult.class);
@@ -169,6 +185,37 @@ public class StatisticsFragment extends Fragment {
                     }
                     winCount.setText(String.valueOf(wincount));
                     loseCount.setText(String.valueOf(lostcount));
+                    if (result.getCategoryName().equalsIgnoreCase("Math"))
+                        math+= result.getCorrectAnswerNumber();
+                    else if (result.getCategoryName().equalsIgnoreCase("History"))
+                        history+= result.getCorrectAnswerNumber();
+                    else if (result.getCategoryName().equalsIgnoreCase("Space"))
+                        space+= result.getCorrectAnswerNumber();
+                    else if(result.getCategoryName().equalsIgnoreCase("Movie"))
+                        movie+= result.getCorrectAnswerNumber();
+                    else if (result.getCategoryName().equalsIgnoreCase("Science"))
+                        science+= result.getCorrectAnswerNumber();
+                    else if (result.getCategoryName().equalsIgnoreCase("Geography"))
+                        geography+= result.getCorrectAnswerNumber();
+                    else if (result.getCategoryName().equalsIgnoreCase("Game"))
+                        game+= result.getCorrectAnswerNumber();
+                    else if (result.getCategoryName().equalsIgnoreCase("Sport"))
+                        sport+= result.getCorrectAnswerNumber();
+                    else if (result.getCategoryName().equalsIgnoreCase("Literature"))
+                        literature+= result.getCorrectAnswerNumber();
+                    else
+                        music++;
+                    mathTv.setText(String.valueOf(math));
+                    historyTv.setText(String.valueOf(history));
+                    spaceTv.setText(String.valueOf(space));
+                    movieTv.setText(String.valueOf(movie));
+                    scienceTv.setText(String.valueOf(science));
+                    geographyTv.setText(String.valueOf(geography));
+                    gameTv.setText(String.valueOf(game));
+                    sportTv.setText(String.valueOf(sport));
+                    literatureTv.setText(String.valueOf(literature));
+                    musicTv.setText(String.valueOf(music));
+
                 }
 
             }
