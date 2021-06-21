@@ -69,6 +69,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
         connectAllElements();
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
