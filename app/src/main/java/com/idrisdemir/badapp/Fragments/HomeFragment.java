@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -19,13 +21,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.idrisdemir.badapp.Adapters.DuelListAdapter;
 import com.idrisdemir.badapp.Adapters.SliderAdapter;
 import com.idrisdemir.badapp.AdministratorActivities.AddQuestionActivity;
+import com.idrisdemir.badapp.Entity.BadGame;
+import com.idrisdemir.badapp.Entity.Category;
+import com.idrisdemir.badapp.Entity.New;
 import com.idrisdemir.badapp.LoginActivity;
 import com.idrisdemir.badapp.R;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,16 +48,11 @@ import com.smarteist.autoimageslider.SliderView;
  */
 public class HomeFragment extends Fragment {
 
-    public SliderView home_sliderView;
-    public Button addQuestionButton;
-    public int[] images = {
-            R.drawable.sil1,
-            R.drawable.sil2,
-            R.drawable.sil3,
-            R.drawable.sil4,
-            R.drawable.sil6,
-            R.drawable.sil5
-    };
+    private SliderView home_sliderView;
+    private Button addQuestionButton;
+    private DatabaseReference database;
+    private ArrayList<New> newsList =new ArrayList<New>();
+    private New news;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,12 +100,35 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
         String loginUser = sharedPref.getString("login", "nologin");
-
         TextView usernameTV = (TextView) view.findViewById(R.id.home_top_user_name);
         usernameTV.setText(loginUser);
+
+        database= FirebaseDatabase.getInstance().getReference();
+        Query query = database.child("news");
+        query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                news=new New();
+                newsList=new ArrayList<New>();
+                for (DataSnapshot ss: snapshot.getChildren())
+                {
+                    news=ss.getValue(New.class);
+                    newsList.add(news);
+                }
+                fillSliderView(newsList,view);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+
 
         Button logoutButton = (Button) view.findViewById(R.id.home_logout_button);
         final MediaPlayer buttonSound=MediaPlayer.create(getActivity(),R.raw.buttonclick2);
@@ -113,12 +145,6 @@ public class HomeFragment extends Fragment {
         });
 
         // Slider Codes
-        home_sliderView = view.findViewById(R.id.home_image_slider);
-        SliderAdapter sliderAdapter = new SliderAdapter(images);
-        home_sliderView.setSliderAdapter(sliderAdapter);
-        home_sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
-        home_sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
-        home_sliderView.startAutoCycle();
 
         addQuestionButton = (Button) view.findViewById(R.id.add_question);
 
@@ -130,6 +156,16 @@ public class HomeFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void fillSliderView(ArrayList<New> newsList, View view)
+    {
+        home_sliderView = view.findViewById(R.id.home_image_slider);
+        SliderAdapter sliderAdapter = new SliderAdapter(newsList);
+        home_sliderView.setSliderAdapter(sliderAdapter);
+        home_sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        home_sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
+        home_sliderView.startAutoCycle();
     }
 
     private void showAddItemDialog(Context c) {

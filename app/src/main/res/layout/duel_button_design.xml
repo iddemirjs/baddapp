@@ -10,9 +10,9 @@
         android:layout_width="380dp"
         android:layout_height="75dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
         android:drawableEnd="@drawable/braincoin"
         android:backgroundTint="@color/libVioletDark">
-
 
         <LinearLayout
             android:layout_width="wrap_content"
