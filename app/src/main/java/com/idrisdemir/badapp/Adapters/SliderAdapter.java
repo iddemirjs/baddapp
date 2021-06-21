@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.idrisdemir.badapp.Entity.New;
 import com.idrisdemir.badapp.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -31,8 +32,8 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.Holder> {
     @Override
     public void onBindViewHolder(Holder viewHolder, int position)
     {
-        viewHolder.newsText.setText(news.get(position).);
-        viewHolder.imageView.setImageResource(news.get(position));
+        viewHolder.newsText.setText(news.get(position).getTitle());
+        Picasso.get().load(news.get(position).getImageUrl()).into(viewHolder.imageView);
     }
 
     @Override
