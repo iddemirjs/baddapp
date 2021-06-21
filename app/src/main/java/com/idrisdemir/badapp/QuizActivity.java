@@ -104,6 +104,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void startGame(ArrayList<Question> questions) {
         this.gameManager = new GameManagement();
+        gameManager.setGameResult(this.examResult);
         gameManager.gameStarter();
         int i = 1;
         Collections.shuffle(questions);
@@ -130,6 +131,7 @@ public class QuizActivity extends AppCompatActivity {
         if (successRate >= 0.6) this.examResult.setSuccess(true);
         else this.examResult.setSuccess(false);
         this.gameManager.setGameResult(this.examResult);
+        this.gameManager.gameFinisher();
         databaseReference.child("quizResults").child(uniqueId).setValue(this.examResult);
         Intent intent = new Intent(QuizActivity.this, ScoreScreenActivity.class);
         intent.putExtra("quizResult", this.examResult);
