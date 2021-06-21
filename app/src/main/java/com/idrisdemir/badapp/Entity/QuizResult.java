@@ -29,12 +29,16 @@ public class QuizResult implements Serializable {
         this.challengeUUID = null;
     }
 
-    public QuizResult(int totalQuestionSize, int correctNumber, int wrongAnswerNumber, String playerName, int profit) {
-        this.correctAnswerNumber = correctNumber;
+    public QuizResult(String uuid, int correctAnswerNumber, int wrongAnswerNumber, int elapsedTime, int totalQuestionSize, String playerName, boolean isSuccess, int profit, String challengeUUID) {
+        this.uuid = uuid;
+        this.correctAnswerNumber = correctAnswerNumber;
         this.wrongAnswerNumber = wrongAnswerNumber;
-        this.playerName = playerName;
-        this.profit = profit;
+        this.elapsedTime = elapsedTime;
         this.totalQuestionSize = totalQuestionSize;
+        this.playerName = playerName;
+        this.isSuccess = isSuccess;
+        this.profit = profit;
+        this.challengeUUID = challengeUUID;
     }
 
     public String getUuid() {
