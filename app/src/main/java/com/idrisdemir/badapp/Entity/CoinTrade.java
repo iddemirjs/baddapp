@@ -4,9 +4,9 @@ public class CoinTrade {
 
     private String uuid;
 
-    private String transmitterId;
+    private String transmitterUserName;
 
-    private String receiverId;
+    private String receiverUserName;
 
     private int amount;
 
@@ -14,10 +14,10 @@ public class CoinTrade {
 
     }
 
-    public CoinTrade(String uuid, String transmitterId, String receiverId, int amount) {
+    public CoinTrade(String uuid, String transmitterUserName, String receiverId, int amount) {
         this.uuid = uuid;
-        this.transmitterId = transmitterId;
-        this.receiverId = receiverId;
+        this.transmitterUserName = transmitterUserName;
+        this.receiverUserName = receiverId;
         this.amount = amount;
     }
 
@@ -29,20 +29,20 @@ public class CoinTrade {
         this.uuid = uuid;
     }
 
-    public String getTransmitterId() {
-        return transmitterId;
+    public String getTransmitterUserName() {
+        return transmitterUserName;
     }
 
-    public void setTransmitterId(String transmitterId) {
-        this.transmitterId = transmitterId;
+    public void setTransmitterUserName(String transmitterUserName) {
+        this.transmitterUserName = transmitterUserName;
     }
 
-    public String getReceiverId() {
-        return receiverId;
+    public String getReceiverUserName() {
+        return receiverUserName;
     }
 
-    public void setReceiverId(String receiverId) {
-        this.receiverId = receiverId;
+    public void setReceiverUserName(String receiverUserName) {
+        this.receiverUserName = receiverUserName;
     }
 
     public int getAmount() {

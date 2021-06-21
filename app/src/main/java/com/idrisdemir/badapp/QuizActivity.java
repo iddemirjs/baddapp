@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +26,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Entity.Question;
 import com.idrisdemir.badapp.Entity.QuizResult;
+import com.idrisdemir.badapp.SystemEngine.GameManagement;
+
 import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -56,6 +61,7 @@ public class QuizActivity extends AppCompatActivity {
     private QuizResult examResult = new QuizResult();
     private CountDownTimer countDownTimer;
     private ProgressBar progressBar;
+    private GameManagement gameManager;
 
     private int currentQuestionNumber = 0;
 
@@ -64,11 +70,9 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         connectAllElements();
-        exitButton.setOnClickListener(new View.OnClickListener()
-        {
+        exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 exitFromQuizDialog(view.getContext());
             }
         });
@@ -99,6 +103,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void startGame(ArrayList<Question> questions) {
+        this.gameManager = new GameManagement();
+        gameManager.gameStarter();
         int i = 1;
         Collections.shuffle(questions);
         for (Question q : questions) {
@@ -109,6 +115,25 @@ public class QuizActivity extends AppCompatActivity {
         }
         startTotalTimer();
         setQuestion(selectedQuestionQueue.poll());
+    }
+
+    public void endGame() {
+        stopTotalTimer();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String loginUser = sharedPref.getString("login", "nologin");
+        this.examResult.setPlayerName(loginUser);
+        this.examResult.setElapsedTime(this.totalTime);
+        this.examResult.setTotalQuestionSize(this.selectedQuestion.size());
+        String uniqueId = UUID.randomUUID().toString();
+        this.examResult.setUuid(uniqueId);
+        double successRate = Double.valueOf(this.examResult.getCorrectAnswerNumber()) / Double.valueOf(this.examResult.getTotalQuestionSize());
+        if (successRate >= 0.6) this.examResult.setSuccess(true);
+        else this.examResult.setSuccess(false);
+        this.gameManager.setGameResult(this.examResult);
+        databaseReference.child("quizResults").child(uniqueId).setValue(this.examResult);
+        Intent intent = new Intent(QuizActivity.this, ScoreScreenActivity.class);
+        intent.putExtra("quizResult", this.examResult);
+        startActivity(intent);
     }
 
     private void setQuestion(Question question) {
@@ -174,7 +199,6 @@ public class QuizActivity extends AppCompatActivity {
         card0D.setCardBackgroundColor(getResources().getColor(R.color.white));
     }
 
-
     private void counterManage(int timerValue) {
         countDownTimer = new CountDownTimer(timerValue * 1000, 1000) {
             @Override
@@ -194,16 +218,15 @@ public class QuizActivity extends AppCompatActivity {
     private void timeIsUp() {
         nextButtonClicked(nextQuestionButton);
     }
-    private void exitFromQuizDialog(Context c)
-    {
+
+    private void exitFromQuizDialog(Context c) {
 
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("Exit")
                 .setMessage("If you quit the test your energy will be wasted.Are you sure you want to continue?")
                 .setPositiveButton("Quit", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
+                    public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(c, DashboardActivity.class);
                         startActivity(intent);
                     }
@@ -211,26 +234,6 @@ public class QuizActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", null)
                 .create();
         dialog.show();
-    }
-
-
-
-    public void endGame() {
-        stopTotalTimer();
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String loginUser = sharedPref.getString("login", "nologin");
-        this.examResult.setPlayerName(loginUser);
-        this.examResult.setElapsedTime(this.totalTime);
-        this.examResult.setTotalQuestionSize(this.selectedQuestion.size());
-        String uniqueId = UUID.randomUUID().toString();
-        this.examResult.setUuid(uniqueId);
-        double successRate =  Double.valueOf(this.examResult.getCorrectAnswerNumber())/Double.valueOf(this.examResult.getTotalQuestionSize());
-        if (successRate >= 0.6) this.examResult.setSuccess(true);
-        else this.examResult.setSuccess(false);
-        databaseReference.child("quizResults").child(uniqueId).setValue(this.examResult);
-        Intent intent = new Intent(QuizActivity.this, ScoreScreenActivity.class);
-        intent.putExtra("quizResult",this.examResult);
-        startActivity(intent);
     }
 
     public void optionA_clicked(View view) {
@@ -287,7 +290,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void connectAllElements() {
-        exitButton=findViewById(R.id.exit_quiz_screen);
+        exitButton = findViewById(R.id.exit_quiz_screen);
         questcount = findViewById(R.id.questionCount);
         progressBar = findViewById(R.id.time_progress);
         cardQuestion = findViewById(R.id.questionCard);
@@ -318,7 +321,6 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
-    // Süreyi sayan sayacımız
     private void startTotalTimer() {
 
         // Eğer çalışan bir süre sayacı varsa onu kapatıyoruz

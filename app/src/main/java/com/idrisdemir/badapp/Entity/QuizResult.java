@@ -88,4 +88,8 @@ public class QuizResult implements Serializable {
     public boolean isSuccess() { return isSuccess; }
 
     public void setSuccess(boolean success) { isSuccess = success; }
+
+    public String getChallengeUUID() { return challengeUUID; }
+
+    public void setChallengeUUID(String challengeUUID) { this.challengeUUID = challengeUUID; }
 }
