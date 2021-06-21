@@ -44,8 +44,8 @@
                 android:layout_height="44dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/loginscreen_edittext_background"
-                android:drawableLeft="@drawable/userdraw"
-                android:drawableTint="@color/redColor"
+                android:drawableLeft="@drawable/ic_money"
+                android:drawableTint="@color/libVioletDark"
                 android:drawablePadding="10sp"
                 android:hint="Coin amount"
                 android:inputType="number"
@@ -124,7 +124,7 @@
 
 
         <Button
-            android:id="@+id/next_question"
+            android:id="@+id/make_duel_button"
             android:layout_width="125dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"

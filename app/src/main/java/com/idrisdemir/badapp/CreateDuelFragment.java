@@ -1,13 +1,18 @@
 package com.idrisdemir.badapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -15,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -28,10 +34,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.AdministratorActivities.AddQuestionActivity;
+import com.idrisdemir.badapp.Entity.BadGame;
 import com.idrisdemir.badapp.Entity.Category;
+import com.idrisdemir.badapp.Entity.CoinTrade;
+import com.idrisdemir.badapp.Entity.Member;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,11 +50,15 @@ import java.util.List;
  */
 public class CreateDuelFragment extends Fragment {
     private EditText coin_amount;
-    private TextView player_count_text,quize_count_text,coin_warning_text;
+    private TextView player_count_text,quize_count_text,coin_warning_text,braincount;
     private SeekBar seekbar_player_count,seekbar_quize_count;
-    int max_player=10,typed_coin=0,player_coin=100;
+    private Button make_match;
+    private String oldName;
+    private Member member;
+    private Spinner spinner2;
+    private int max_player=10,typed_coin=0,player_coin=0;
     //private int max_player=10;
-    DatabaseReference databaseReference;
+    private DatabaseReference databaseReference;
     Activity currentActivity;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -95,16 +109,85 @@ public class CreateDuelFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
-
-        databaseReference=FirebaseDatabase.getInstance().getReference();
-        Query query = databaseReference.child("category");
         View view= inflater.inflate(R.layout.fragment_create_duel, container, false);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        databaseReference  = database.getReference();
+        databaseReference=FirebaseDatabase.getInstance().getReference();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        oldName = sharedPref.getString("login","nologin");
+        Query query = databaseReference.child("category");
         coin_amount=view.findViewById(R.id.coin_amount);
         player_count_text=view.findViewById(R.id.seek_bar_text);
         quize_count_text=view.findViewById(R.id.seekbar_question_text);
         coin_warning_text=view.findViewById(R.id.warning);
         seekbar_player_count=view.findViewById(R.id.seekbar_player_size);
         seekbar_quize_count=view.findViewById(R.id.seekbar_question_count);
+        make_match=view.findViewById(R.id.make_duel_button);
+        braincount=view.findViewById(R.id.brain_count);
+
+
+        Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
+        coinQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CoinTrade temp=new CoinTrade();
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp = ss.getValue(CoinTrade.class);
+                    player_coin+=temp.getAmount();
+
+                }
+                braincount.setText(String.valueOf(player_coin));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
+        Query query2 = databaseReference.child("users").orderByChild("username").equalTo(oldName);
+        query2.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                member = new Member();
+                for (DataSnapshot ss:snapshot.getChildren())
+                {
+                    member = ss.getValue(Member.class);
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+        make_match.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(typed_coin<=player_coin && seekbar_player_count.getProgress()>0){
+
+                    AlertDialog dialog = new AlertDialog.Builder(getContext())
+                            .setTitle("Start Duello")
+                            .setMessage("Are sure about create a Duello? ")
+                            .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String duelUid= UUID.randomUUID().toString();
+                                    int questionCount=seekbar_quize_count.getProgress();
+                                    int moneyToBad=seekbar_player_count.getProgress();
+                                    String name=member.getUsername();
+                                    BadGame duello=new BadGame(duelUid,name,spinner2.getSelectedItem().toString(),seekbar_player_count.getProgress(),0,questionCount,moneyToBad);
+                                    databaseReference.child("badgames").child(duello.getUUID()).setValue(duello);
+                                }
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .create();
+                    dialog.show();
+                }
+            }
+        });
         coin_amount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -187,7 +270,7 @@ public class CreateDuelFragment extends Fragment {
                     category = ss.getValue(Category.class);
                     categoryList.add(category.getCategoryName());
                 }
-                Spinner spinner2 = (Spinner) view.findViewById(R.id.category_spinner_duel);
+                spinner2 = (Spinner) view.findViewById(R.id.category_spinner_duel);
                 ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(currentActivity, android.R.layout.simple_spinner_item, categoryList);
                 spinner2.setAdapter(dataAdapter);
             }
