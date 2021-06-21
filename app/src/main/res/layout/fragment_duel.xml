@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.DuelFragment"
-    android:background="@drawable/vs_screen">
+    android:background="@drawable/quiz_background"
+    android:backgroundTint="@color/lightGrayColor">
 
     <include layout="@layout/toolbar_base">
 
