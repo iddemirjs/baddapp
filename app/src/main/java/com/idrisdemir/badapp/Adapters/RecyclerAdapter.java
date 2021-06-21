@@ -30,7 +30,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     public RecyclerAdapter(ArrayList <Integer> data,OnCategoryListener onCategoryListener)
     {
-        //this.mOnCategoryListener=mOnCategoryListener;
         this.data=data;
         this.onCategoryListener=onCategoryListener;
     }
@@ -52,7 +51,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             public void onClick(View v)
             {
                 onCategoryListener.onCategoryClick(data.get(position));
-
             }
         });
     }

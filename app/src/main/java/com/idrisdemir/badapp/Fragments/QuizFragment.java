@@ -140,15 +140,13 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
     }
 
     @Override
-    public void onCategoryClick(int position) {
-
-        Log.d("blabla", String.valueOf(position));
+    public void onCategoryClick(int position)
+    {
         for (Category tempCategory:categoryList) {
             if(tempCategory.getCategoryImageId()==position){
                 startQuizAlert(getContext(),tempCategory.getCategoryName());
             }
         }
-
     }
     private void startQuizAlert(Context c, String categorySelected) {
         AlertDialog dialog = new AlertDialog.Builder(c)
