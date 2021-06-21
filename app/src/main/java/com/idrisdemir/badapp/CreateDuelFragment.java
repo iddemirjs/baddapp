@@ -38,6 +38,7 @@ import com.idrisdemir.badapp.Entity.BadGame;
 import com.idrisdemir.badapp.Entity.Category;
 import com.idrisdemir.badapp.Entity.CoinTrade;
 import com.idrisdemir.badapp.Entity.Member;
+import com.idrisdemir.badapp.Fragments.DuelFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,11 +51,10 @@ import java.util.UUID;
  */
 public class CreateDuelFragment extends Fragment {
     private EditText coin_amount;
-    private TextView player_count_text,quize_count_text,coin_warning_text,braincount;
+    private TextView player_count_text,quize_count_text,coin_warning_text,cost_duel_text;
     private SeekBar seekbar_player_count,seekbar_quize_count;
     private Button make_match;
     private String oldName;
-    private Member member;
     private Spinner spinner2;
     private int max_player=10,typed_coin=0,player_coin=0;
     //private int max_player=10;
@@ -122,47 +122,32 @@ public class CreateDuelFragment extends Fragment {
         coin_warning_text=view.findViewById(R.id.warning);
         seekbar_player_count=view.findViewById(R.id.seekbar_player_size);
         seekbar_quize_count=view.findViewById(R.id.seekbar_question_count);
+        cost_duel_text=view.findViewById(R.id.cost_of_duel);
         make_match=view.findViewById(R.id.make_duel_button);
-        braincount=view.findViewById(R.id.brain_count);
 
 
         Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
-        coinQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        coinQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 CoinTrade temp=new CoinTrade();
+                int player_coin_sum=0;
                 for (DataSnapshot ss:snapshot.getChildren()) {
                     temp = ss.getValue(CoinTrade.class);
-                    player_coin+=temp.getAmount();
-
+                    player_coin_sum+=temp.getAmount();
                 }
-                braincount.setText(String.valueOf(player_coin));
+                System.out.println();
+                //braincoin.setText(String.valueOf(player_coin_sum));
+                player_coin=player_coin_sum;
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-
-        Query query2 = databaseReference.child("users").orderByChild("username").equalTo(oldName);
-        query2.addListenerForSingleValueEvent(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                member = new Member();
-                for (DataSnapshot ss:snapshot.getChildren())
-                {
-                    member = ss.getValue(Member.class);
-                }
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
 
             }
         });
+
+
         make_match.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,9 +161,7 @@ public class CreateDuelFragment extends Fragment {
                                 public void onClick(DialogInterface dialog, int which) {
                                     String duelUid= UUID.randomUUID().toString();
                                     int questionCount=seekbar_quize_count.getProgress();
-                                    int moneyToBad=seekbar_player_count.getProgress();
-                                    String name=member.getUsername();
-                                    BadGame duello=new BadGame(duelUid,name,spinner2.getSelectedItem().toString(),seekbar_player_count.getProgress(),0,questionCount,moneyToBad);
+                                    BadGame duello=new BadGame(duelUid,oldName,spinner2.getSelectedItem().toString(),seekbar_player_count.getProgress(),0,questionCount,typed_coin);
                                     databaseReference.child("badgames").child(duello.getUUID()).setValue(duello);
                                 }
                             })
@@ -228,6 +211,9 @@ public class CreateDuelFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                player_count_text.setText(""+progress);
+               String total=String.valueOf(typed_coin*seekbar_player_count.getProgress());
+               cost_duel_text.setText(total);
+
             }
 
             @Override
