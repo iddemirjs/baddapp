@@ -35,9 +35,12 @@ public class DuelListAdapter extends RecyclerView.Adapter<DuelListAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull DuelListAdapter.MyViewHolder holder, int position)
     {
+        String userCapacity=String.valueOf(data.get(position).getGameQuota());
+        String badPlayed=String.valueOf(data.get(position).getPlayedMatchSize());
+        userCapacity=badPlayed+"/"+userCapacity;
         holder.brainCoinCount.setText(String.valueOf(data.get(position).getJoinPrice()));
         holder.questionCount.setText(String.valueOf(data.get(position).getQuestionSize()));
-        holder.batUserCount.setText(String.valueOf(data.get(position).getGameQuota()));
+        holder.batUserCount.setText(userCapacity);
         holder.category.setText(data.get(position).getCategoryName());
         holder.username.setText(data.get(position).getChallengeOwnerUserName());
 

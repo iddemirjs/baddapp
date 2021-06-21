@@ -21,6 +21,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Entity.LevelMapping;
 import com.idrisdemir.badapp.Entity.Member;
+import com.idrisdemir.badapp.Entity.QuizResult;
 import com.idrisdemir.badapp.R;
 
 /**
@@ -35,6 +36,9 @@ public class StatisticsFragment extends Fragment {
     private int userLevel,userExperience,nextExperience;
     private Member member;
     private LevelMapping level;
+    private QuizResult result;
+    private int wincount=0;
+    private int lostcount=0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -117,6 +121,8 @@ public class StatisticsFragment extends Fragment {
         TextView levelText = (TextView) view.findViewById(R.id.levelNumber);
         TextView tvPercentLevel = (TextView) view.findViewById(R.id.percent_level);
         ProgressBar userProgress=(ProgressBar) view.findViewById(R.id.userExperienceProgressBar);
+        TextView winCount=(TextView) view.findViewById(R.id.winCount);
+        TextView loseCount=(TextView) view.findViewById(R.id.lostCount);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         dbReference  = database.getReference();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
@@ -143,6 +149,40 @@ public class StatisticsFragment extends Fragment {
 
             }
         });
+
+        Query query2 = dbReference.child("quizResults").orderByChild("playerName").equalTo(oldName);
+        query2.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                result=new QuizResult();
+                for (DataSnapshot ss:snapshot.getChildren())
+                {
+                    result= ss.getValue(QuizResult.class);
+                    if(result.isSuccess())
+                    {
+                        wincount++;
+                    }
+                    else {
+                        lostcount++;
+                    }
+                    winCount.setText(String.valueOf(wincount));
+                    loseCount.setText(String.valueOf(lostcount));
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+
+
+
+
 
         return view;
     }
