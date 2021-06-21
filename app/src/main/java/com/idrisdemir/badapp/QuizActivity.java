@@ -63,6 +63,7 @@ public class QuizActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private ProgressBar progressBar;
     private GameManagement gameManager;
+    private int questionSize=10;
 
     private int currentQuestionNumber = 0;
 
@@ -85,6 +86,7 @@ public class QuizActivity extends AppCompatActivity {
             BadGame badGame = (BadGame) getIntent().getSerializableExtra("bad_game");
             if (badGame != null){
                 this.examResult.setChallengeUUID(badGame.getUuid());
+                this.questionSize = badGame.getQuestionSize();
             }
         }
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -113,6 +115,7 @@ public class QuizActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String loginUser = sharedPref.getString("login", "nologin");
         this.examResult.setPlayerName(loginUser);
+        this.examResult.setCategoryName(this.categoryName);
         gameManager.setGameResult(this.examResult);
         gameManager.gameStarter();
         int i = 1;
@@ -120,7 +123,7 @@ public class QuizActivity extends AppCompatActivity {
         for (Question q : questions) {
             selectedQuestion.add(q);
             selectedQuestionQueue.add(q);
-            if (i == 10) break;
+            if (i == questionSize) break;
             i++;
         }
         startTotalTimer();
@@ -134,6 +137,7 @@ public class QuizActivity extends AppCompatActivity {
         this.examResult.setPlayerName(loginUser);
         this.examResult.setElapsedTime(this.totalTime);
         this.examResult.setTotalQuestionSize(this.selectedQuestion.size());
+        this.examResult.setCategoryName(this.categoryName);
         String uniqueId = UUID.randomUUID().toString();
         this.examResult.setUuid(uniqueId);
         double successRate = Double.valueOf(this.examResult.getCorrectAnswerNumber()) / Double.valueOf(this.examResult.getTotalQuestionSize());
