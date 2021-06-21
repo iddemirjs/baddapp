@@ -1,4 +1,4 @@
-package com.idrisdemir.badapp;
+package com.idrisdemir.badapp.Fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,8 +23,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Adapters.DuelListAdapter;
 import com.idrisdemir.badapp.Entity.BadGame;
-import com.idrisdemir.badapp.Entity.Category;
-import com.idrisdemir.badapp.Entity.Member;
+import com.idrisdemir.badapp.QuizActivity;
+import com.idrisdemir.badapp.R;
 
 import java.util.ArrayList;
 
@@ -100,7 +99,7 @@ public class DuelListFragment extends Fragment  implements  DuelListAdapter.Item
                     duel = ss.getValue(BadGame.class);
                     list.add(duel);
                 }
-                initDuelRecylerView(list,view);
+                initDuelRecyclerView(list,view);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error)
@@ -111,7 +110,7 @@ public class DuelListFragment extends Fragment  implements  DuelListAdapter.Item
         return view;
     }
 
-    private void initDuelRecylerView(ArrayList<BadGame> duelList, View view)
+    private void initDuelRecyclerView(ArrayList<BadGame> duelList, View view)
     {
             recyclerView = view.findViewById(R.id.duel_list_recycler);
             recyclerView.setHasFixedSize(true);
@@ -126,14 +125,14 @@ public class DuelListFragment extends Fragment  implements  DuelListAdapter.Item
     {
         for (BadGame temp:list)
         {
-            if(temp.getUUID()==badgame.getUUID())
+            if(temp.getUuid()==badgame.getUuid())
             {
-                startDuelAlert(getContext(),temp.getUUID());
+                startDuelAlert(getContext(), temp);
             }
         }
     }
 
-    private void startDuelAlert(Context c, String categorySelected)
+    private void startDuelAlert(Context c, BadGame badGame)
     {
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("Start Duel")
@@ -142,7 +141,10 @@ public class DuelListFragment extends Fragment  implements  DuelListAdapter.Item
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-
+                        Intent intent=new Intent(getContext(), QuizActivity.class);
+                        intent.putExtra("category_name", badGame.getCategoryName());
+                        intent.putExtra("bad_game", badGame);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton("Cancel", null)

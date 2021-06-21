@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.idrisdemir.badapp.Entity.BadGame;
 import com.idrisdemir.badapp.Entity.Question;
 import com.idrisdemir.badapp.Entity.QuizResult;
 import com.idrisdemir.badapp.SystemEngine.GameManagement;
@@ -81,6 +82,10 @@ public class QuizActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             categoryName = bundle.getString("category_name");
+            BadGame badGame = (BadGame) getIntent().getSerializableExtra("bad_game");
+            if (badGame != null){
+                this.examResult.setChallengeUUID(badGame.getUuid());
+            }
         }
         databaseReference = FirebaseDatabase.getInstance().getReference();
         Query query = databaseReference.child("questions")
@@ -105,6 +110,9 @@ public class QuizActivity extends AppCompatActivity {
 
     private void startGame(ArrayList<Question> questions) {
         this.gameManager = new GameManagement();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String loginUser = sharedPref.getString("login", "nologin");
+        this.examResult.setPlayerName(loginUser);
         gameManager.setGameResult(this.examResult);
         gameManager.gameStarter();
         int i = 1;

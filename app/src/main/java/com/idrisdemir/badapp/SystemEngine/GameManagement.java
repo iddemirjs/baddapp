@@ -43,13 +43,15 @@ public class GameManagement {
     }
 
     private void decreaseQuota() {
-        Query query = databaseReference.child("badgames").child(this.gameResult.getChallengeUUID());
+        Query query = databaseReference.child("badgames").orderByChild("uuid").equalTo(this.gameResult.getChallengeUUID());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                BadGame temp = new BadGame();
                 for (DataSnapshot ss : snapshot.getChildren()) {
-                    badGame = ss.getValue(BadGame.class);
+                    temp = ss.getValue(BadGame.class);
                 }
+                badGame = temp;
                 badGame.increasePlayedMatchSize();
                 databaseReference.child("badgames").child(gameResult.getChallengeUUID()).setValue(badGame);
             }
