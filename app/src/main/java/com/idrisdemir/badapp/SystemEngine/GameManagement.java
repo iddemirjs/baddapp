@@ -17,6 +17,7 @@ import com.idrisdemir.badapp.Entity.User;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
@@ -28,6 +29,7 @@ public class GameManagement {
     // TODO : Kullanıcının Badgame ödülünü dağıt.
 
     private QuizResult gameResult;
+    private BadGame badGame;
     private DatabaseReference databaseReference;
 
     public GameManagement() {
@@ -37,19 +39,19 @@ public class GameManagement {
     public void gameStarter() {
         this.decreaseEnergy();
         if (this.gameResult.getChallengeUUID() != null) this.decreaseQuota();
+
     }
 
     private void decreaseQuota() {
-        Query query = databaseReference.child("challenges").child(this.gameResult.getChallengeUUID());
+        Query query = databaseReference.child("badgames").child(this.gameResult.getChallengeUUID());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                BadGame badGame = new BadGame();
                 for (DataSnapshot ss : snapshot.getChildren()) {
                     badGame = ss.getValue(BadGame.class);
                 }
                 badGame.increasePlayedMatchSize();
-                databaseReference.child("challenges").child(gameResult.getChallengeUUID()).setValue(badGame);
+                databaseReference.child("badgames").child(gameResult.getChallengeUUID()).setValue(badGame);
             }
 
             @Override
@@ -87,7 +89,7 @@ public class GameManagement {
                 for (DataSnapshot ss : snapshot.getChildren()) {
                     member = ss.getValue(Member.class);
                 }
-                member.setExperience( member.getExperience() + experienceProfit);
+                member.setExperience(member.getExperience() + experienceProfit);
                 databaseReference.child("users").child(member.getUuid()).setValue(member);
                 UserManagement userManagement = new UserManagement();
                 userManagement.levelUppControl(member.getUsername());
@@ -102,11 +104,60 @@ public class GameManagement {
     }
 
     private void startChallengeFinisherProcedures() {
+        Query query = databaseReference.child("quizResults")
+                .orderByChild("challengeUUID").equalTo(this.gameResult.getUuid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                ArrayList<QuizResult> quizResults = new ArrayList<QuizResult>();
+                for (DataSnapshot ss : snapshot.getChildren()) {
+                    quizResults.add(ss.getValue(QuizResult.class));
+                }
+                controlOwnerScore(quizResults);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
 
     }
 
+    public void controlOwnerScore(ArrayList<QuizResult> quizResults) {
+        if (this.gameResult.getPlayerName().equalsIgnoreCase(badGame.getChallengeOwnerUserName())) {
+            // TODO : Dont make something
+        } else {
+            QuizResult ownerResults = null;
+            for (QuizResult tempResult : quizResults) {
+                if (tempResult.getPlayerName().equalsIgnoreCase(badGame.getChallengeOwnerUserName())) {
+                    ownerResults = tempResult;
+                    break;
+                }
+            }
+            if (ownerResults != null) {
+                if ((!ownerResults.isSuccess()) || ownerResults.getCorrectAnswerNumber() < this.gameResult.getCorrectAnswerNumber()) {
+                    CoinTrade coinTrade = new CoinTrade();
+                    coinTrade.setUuid(UUID.randomUUID().toString());
+                    coinTrade.setAmount(this.badGame.getJoinPrice() * 2);
+                    coinTrade.setReceiverUserName(this.gameResult.getPlayerName());
+                    coinTrade.setTransmitterUserName("BadAppCash");
+
+                    this.databaseReference.child("coinTrades").child(coinTrade.getUuid()).setValue(coinTrade);
+                }else if ((!gameResult.isSuccess()) || ownerResults.getCorrectAnswerNumber() > this.gameResult.getCorrectAnswerNumber()){
+                    CoinTrade coinTrade = new CoinTrade();
+                    coinTrade.setUuid(UUID.randomUUID().toString());
+                    coinTrade.setAmount(this.badGame.getJoinPrice() * 2);
+                    coinTrade.setReceiverUserName(this.badGame.getChallengeOwnerUserName());
+                    coinTrade.setTransmitterUserName("BadAppCash");
+                }
+            }
+        }
+    }
+
+
     private void distributePrize() {
-        if (this.gameResult.getChallengeUUID() == null) {
+        if (this.gameResult.getChallengeUUID() != null) {
             this.startChallengeFinisherProcedures();
             return;
         } else {
@@ -126,7 +177,7 @@ public class GameManagement {
 
     private void increaseEnergy() {
         EnergyTrade energyTrade = new EnergyTrade();
-        if (this.gameResult.getChallengeUUID() == null) energyTrade.setEnergyPiece(+1);
+        if (this.gameResult.getChallengeUUID() == null) energyTrade.setEnergyPiece(+2);
         else energyTrade.setEnergyPiece(+2);
         energyTrade.setTradeType("profit");
         energyTrade.setUsername(this.gameResult.getPlayerName());
