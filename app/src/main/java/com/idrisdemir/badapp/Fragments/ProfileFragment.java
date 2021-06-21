@@ -1,16 +1,29 @@
 package com.idrisdemir.badapp.Fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Adapters.ViewPagerAdapter;
+import com.idrisdemir.badapp.Entity.LevelMapping;
+import com.idrisdemir.badapp.Entity.Member;
 import com.idrisdemir.badapp.R;
 
 /**
@@ -18,9 +31,15 @@ import com.idrisdemir.badapp.R;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
-    TabLayout tab_layout;
-    ViewPager view_pager;
+public class ProfileFragment extends Fragment
+{
+    private TabLayout tab_layout;
+    private ViewPager view_pager;
+    private DatabaseReference dbReference;
+    private String oldName,uniqueID;
+    private LevelMapping level;
+    private Member member;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -68,8 +87,33 @@ public class ProfileFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_profile, container, false);
         view_pager=view.findViewById(R.id.view_pager);
         setUpViewPager(view_pager);
+        TextView userAgnomen=view.findViewById(R.id.user_agnomen);
         tab_layout=view.findViewById(R.id.tab_layout);
         tab_layout.setupWithViewPager(view_pager);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        dbReference  = database.getReference();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        oldName = sharedPref.getString("login","nologin");
+        Query query = dbReference.child("users").orderByChild("username").equalTo(oldName);
+        query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                member = new Member();
+                for (DataSnapshot ss:snapshot.getChildren())
+                {
+                    member = ss.getValue(Member.class);
+                }
+                editUserArgomen(member,userAgnomen);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+
 
         return view;
     }
@@ -80,4 +124,29 @@ public class ProfileFragment extends Fragment {
         adapter.addFragment(new AccountFragment(), "ACCOUNT");
         view_pager.setAdapter(adapter);
     }
+
+    public void editUserArgomen(Member member, TextView userArgomen)
+    {
+        Query levelquery = dbReference.child("levels").orderByChild("level").equalTo(member.getLevel());
+        levelquery.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                level=new LevelMapping();
+                for (DataSnapshot ss:snapshot.getChildren())
+                {
+                    level = ss.getValue(LevelMapping.class);
+                }
+                userArgomen.setText(level.getRank());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+    }
+
+
 }

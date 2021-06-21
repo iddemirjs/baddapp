@@ -17,6 +17,17 @@
             android:background="@drawable/profilepage_background">
 
             <ImageView
+                android:id="@+id/home_profile_back_iv"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="11dp"
+                android:src="@drawable/back_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
                 android:id="@+id/home_profile_iv"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -25,23 +36,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.2" />
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/user_agnomen"
+                android:layout_width="169dp"
+                android:layout_height="49dp"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/name_text"
+                android:paddingLeft="50dp"
+                android:paddingTop="10dp"
                 android:text="Name"
-                android:textColor="@color/libWhiteTextFont"
-                android:textSize="18sp"
+                android:textColor="@color/libVioletDark"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/home_profile_iv"
-                app:layout_constraintHorizontal_bias="0.483"
+                app:layout_constraintHorizontal_bias="0.48"
                 app:layout_constraintStart_toStartOf="@+id/home_profile_iv"
                 app:layout_constraintTop_toBottomOf="@+id/home_profile_iv"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.tabs.TabLayout

@@ -8,11 +8,10 @@
 
     <ImageView
         android:id="@+id/button_image"
-        android:layout_width="350dp"
+        android:layout_width="380dp"
         android:layout_height="75dp"
         android:src="@drawable/buttonimage_literature"
-        android:layout_gravity="center"
-        >
+        android:layout_gravity="center">
     </ImageView>
 
 </LinearLayout>
