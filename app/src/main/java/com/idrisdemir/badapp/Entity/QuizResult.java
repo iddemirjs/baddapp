@@ -20,6 +20,8 @@ public class QuizResult implements Serializable {
 
     private int profit;
 
+    private String categoryName;
+
     private String challengeUUID;
 
     public QuizResult() {
@@ -29,7 +31,7 @@ public class QuizResult implements Serializable {
         this.challengeUUID = null;
     }
 
-    public QuizResult(String uuid, int correctAnswerNumber, int wrongAnswerNumber, int elapsedTime, int totalQuestionSize, String playerName, boolean isSuccess, int profit, String challengeUUID) {
+    public QuizResult(String uuid, int correctAnswerNumber, int wrongAnswerNumber, int elapsedTime, int totalQuestionSize, String playerName, boolean isSuccess, int profit, String categoryName, String challengeUUID) {
         this.uuid = uuid;
         this.correctAnswerNumber = correctAnswerNumber;
         this.wrongAnswerNumber = wrongAnswerNumber;
@@ -38,6 +40,7 @@ public class QuizResult implements Serializable {
         this.playerName = playerName;
         this.isSuccess = isSuccess;
         this.profit = profit;
+        this.categoryName = categoryName;
         this.challengeUUID = challengeUUID;
     }
 
@@ -96,4 +99,12 @@ public class QuizResult implements Serializable {
     public String getChallengeUUID() { return challengeUUID; }
 
     public void setChallengeUUID(String challengeUUID) { this.challengeUUID = challengeUUID; }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }
