@@ -18,11 +18,10 @@
             android:id="@+id/home_top_bg_iv"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:layout_marginTop="0dp"
             android:scaleType="fitXY"
             android:src="@drawable/home_top_bg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,18 +73,6 @@
             app:layout_constraintStart_toEndOf="@+id/home_profile_back_iv"
             app:layout_constraintTop_toTopOf="@+id/home_profile_back_iv" />
 
-        <TextView
-            android:id="@+id/home_top_user_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Yeni Bilgin"
-            android:textColor="@color/libWhiteTextFont"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/home_profile_back_iv"
-            app:layout_constraintStart_toEndOf="@+id/home_profile_back_iv"
-            app:layout_constraintTop_toBottomOf="@+id/home_top_user_name" />
-
         <com.smarteist.autoimageslider.SliderView
             android:layout_width="match_parent"
             android:layout_height="160dp"
@@ -109,13 +96,15 @@
         </com.smarteist.autoimageslider.SliderView>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/home_brain_coin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/titillium_web_semibold"
+            android:layout_marginBottom="5dp"
             android:text="550"
             android:paddingLeft="10dp"
             android:textSize="28sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
@@ -124,10 +113,11 @@
             android:id="@+id/imageView"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/braincoin"
-            app:layout_constraintStart_toStartOf="@+id/home_profile_back_iv"
-            app:layout_constraintTop_toBottomOf="@+id/home_profile_back_iv" />
+            app:layout_constraintStart_toStartOf="@+id/home_top_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/home_top_user_name" />
 
         <Button
             android:id="@+id/add_question"

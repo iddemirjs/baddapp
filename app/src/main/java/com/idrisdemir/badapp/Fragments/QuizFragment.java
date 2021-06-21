@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Adapters.RecyclerAdapter;
 import com.idrisdemir.badapp.Entity.Category;
+import com.idrisdemir.badapp.Entity.CoinTrade;
+import com.idrisdemir.badapp.Entity.EnergyTrade;
 import com.idrisdemir.badapp.Entity.Question;
 import com.idrisdemir.badapp.QuizActivity;
 import com.idrisdemir.badapp.R;
@@ -45,8 +49,7 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
     public DatabaseReference database;
     public RecyclerView quiz_recyclerView;
     public ArrayList<Integer> button_images=new ArrayList<Integer>();
-    public String bCount="235";
-    public String eCount="5";
+    TextView braincoin,energycount;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,6 +97,10 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_quiz,container,false);
         database= FirebaseDatabase.getInstance().getReference();
+        braincoin=view.findViewById(R.id.brain_count);
+        energycount=view.findViewById(R.id.energy_count);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        String oldName = sharedPref.getString("login","nologin");
         Query query = database.child("category");
         query.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -115,6 +122,47 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
 
             }
         });
+
+        Query coinQuery = database.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
+        coinQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CoinTrade temp=new CoinTrade();
+                int player_coin=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp = ss.getValue(CoinTrade.class);
+                    player_coin+=temp.getAmount();
+                }
+                System.out.println();
+                braincoin.setText(String.valueOf(player_coin));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Query energyQuery = database.child("energyTrades").orderByChild("username").equalTo(oldName);
+        energyQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                EnergyTrade temp1=new EnergyTrade();
+                int player_energy=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp1 = ss.getValue(EnergyTrade.class);
+                    player_energy+=temp1.getEnergyPiece();
+                }
+                System.out.println();
+                energycount.setText(String.valueOf(player_energy));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         return view;
     }
 
@@ -135,8 +183,6 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
     {
         TextView braincoin_count =(TextView) view.findViewById(R.id.brain_count);
         TextView energy_count =(TextView) view.findViewById(R.id.energy_count);
-        braincoin_count.setText(bCount);
-        energy_count.setText(eCount);
     }
 
     @Override

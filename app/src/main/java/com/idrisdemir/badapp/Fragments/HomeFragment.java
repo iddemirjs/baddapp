@@ -32,6 +32,8 @@ import com.idrisdemir.badapp.Adapters.SliderAdapter;
 import com.idrisdemir.badapp.AdministratorActivities.AddQuestionActivity;
 import com.idrisdemir.badapp.Entity.BadGame;
 import com.idrisdemir.badapp.Entity.Category;
+import com.idrisdemir.badapp.Entity.CoinTrade;
+import com.idrisdemir.badapp.Entity.Member;
 import com.idrisdemir.badapp.Entity.New;
 import com.idrisdemir.badapp.LoginActivity;
 import com.idrisdemir.badapp.R;
@@ -53,6 +55,8 @@ public class HomeFragment extends Fragment {
     private DatabaseReference database;
     private ArrayList<New> newsList =new ArrayList<New>();
     private New news;
+    private TextView braincoin;
+    private Member member;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -104,7 +108,7 @@ public class HomeFragment extends Fragment {
         String loginUser = sharedPref.getString("login", "nologin");
         TextView usernameTV = (TextView) view.findViewById(R.id.home_top_user_name);
         usernameTV.setText(loginUser);
-
+        braincoin=view.findViewById(R.id.home_brain_coin);
         database= FirebaseDatabase.getInstance().getReference();
         Query query = database.child("news");
         query.addListenerForSingleValueEvent(new ValueEventListener()
@@ -129,6 +133,27 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        Query coinQuery = database.child("coinTrades").orderByChild("receiverUserName").equalTo(loginUser);
+        coinQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CoinTrade temp=new CoinTrade();
+                int player_coin=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp = ss.getValue(CoinTrade.class);
+                    player_coin+=temp.getAmount();
+                }
+                System.out.println();
+                braincoin.setText(String.valueOf(player_coin));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         Button logoutButton = (Button) view.findViewById(R.id.home_logout_button);
         final MediaPlayer buttonSound=MediaPlayer.create(getActivity(),R.raw.buttonclick2);
@@ -147,7 +172,6 @@ public class HomeFragment extends Fragment {
         // Slider Codes
 
         addQuestionButton = (Button) view.findViewById(R.id.add_question);
-
         addQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
