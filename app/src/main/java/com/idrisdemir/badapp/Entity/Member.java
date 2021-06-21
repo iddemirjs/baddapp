@@ -11,13 +11,17 @@ public class Member extends User {
 
     private String email;
 
-    public Member(){
+    public Member() {
 
-    };
+        this.experience = 0;
+        this.level = 1;
+    }
 
-    public Member(String username,String email,String password, String gender, int experience) {
+    public Member(String username, String email, String password, String gender, int experience, int level) {
         super(username, password, gender);
         this.experience = experience;
+        this.email = email;
+        this.level = level;
     }
 
     public int getExperience() {
@@ -35,4 +39,13 @@ public class Member extends User {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
