@@ -21,14 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.idrisdemir.badapp.Adapters.ViewPagerAdapter;
-import com.idrisdemir.badapp.CreateDuelFragment;
-import com.idrisdemir.badapp.DuelHistoryFragment;
-import com.idrisdemir.badapp.DuelListFragment;
 import com.idrisdemir.badapp.Entity.CoinTrade;
 import com.idrisdemir.badapp.Entity.EnergyTrade;
 import com.idrisdemir.badapp.R;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -138,12 +133,6 @@ public class DuelFragment extends Fragment {
     }
 
     private void setUpViewPager(ViewPager view_pager_duello) {
-        System.out.println("asdasdsaadsadsasdsad");System.out.println("asdasdsaadsadsasdsad");
-        System.out.println("asdasdsaadsadsasdsad");System.out.println("asdasdsaadsadsasdsad");
-        System.out.println("asdasdsaadsadsasdsad");
-        System.out.println("asdasdsaadsadsasdsad");System.out.println("asdasdsaadsadsasdsad");System.out.println("asdasdsaadsadsasdsad");
-
-
         ViewPagerAdapter adapter_duello=new ViewPagerAdapter(getChildFragmentManager());
         adapter_duello.addFragment(new DuelListFragment(), "Active Duels");
         adapter_duello.addFragment(new DuelHistoryFragment(), "Duel History");

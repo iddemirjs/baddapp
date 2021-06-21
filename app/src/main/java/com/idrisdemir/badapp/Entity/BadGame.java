@@ -1,7 +1,13 @@
 package com.idrisdemir.badapp.Entity;
 
-public class BadGame {
-    private String UUID;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.io.Serializable;
+
+
+@IgnoreExtraProperties
+public class BadGame implements Serializable {
+    private String uuid;
     private String challengeOwnerUserName;
     private String categoryName;
     private int gameQuota;
@@ -13,8 +19,8 @@ public class BadGame {
 
     }
 
-    public BadGame(String UUID, String challengeOwnerUserName, String categoryName, int gameQuota, int playedMatchSize, int questionSize, int joinPrice) {
-        this.UUID = UUID;
+    public BadGame(String uuid, String challengeOwnerUserName, String categoryName, int gameQuota, int playedMatchSize, int questionSize, int joinPrice) {
+        this.uuid = uuid;
         this.challengeOwnerUserName = challengeOwnerUserName;
         this.categoryName = categoryName;
         this.gameQuota = gameQuota;
@@ -23,12 +29,12 @@ public class BadGame {
         this.joinPrice = joinPrice;
     }
 
-    public String getUUID() {
-        return UUID;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getChallengeOwnerUserName() {

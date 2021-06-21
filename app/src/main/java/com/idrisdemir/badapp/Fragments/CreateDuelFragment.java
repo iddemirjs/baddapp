@@ -1,8 +1,7 @@
-package com.idrisdemir.badapp;
+package com.idrisdemir.badapp.Fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +23,6 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,12 +30,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.idrisdemir.badapp.AdministratorActivities.AddQuestionActivity;
 import com.idrisdemir.badapp.Entity.BadGame;
 import com.idrisdemir.badapp.Entity.Category;
 import com.idrisdemir.badapp.Entity.CoinTrade;
-import com.idrisdemir.badapp.Entity.Member;
-import com.idrisdemir.badapp.Fragments.DuelFragment;
+import com.idrisdemir.badapp.QuizActivity;
+import com.idrisdemir.badapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,7 +158,12 @@ public class CreateDuelFragment extends Fragment {
                                     String duelUid= UUID.randomUUID().toString();
                                     int questionCount=seekbar_quize_count.getProgress();
                                     BadGame duello=new BadGame(duelUid,oldName,spinner2.getSelectedItem().toString(),seekbar_player_count.getProgress(),0,questionCount,typed_coin);
-                                    databaseReference.child("badgames").child(duello.getUUID()).setValue(duello);
+                                    databaseReference.child("badgames").child(duello.getUuid()).setValue(duello);
+
+                                    Intent intent=new Intent(getContext(), QuizActivity.class);
+                                    intent.putExtra("category_name", duello.getCategoryName());
+                                    intent.putExtra("bad_game", duello);
+                                    startActivity(intent);
                                 }
                             })
                             .setNegativeButton("Cancel", null)
