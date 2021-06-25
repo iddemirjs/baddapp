@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
     private New news;
     private TextView braincoin;
     private Member member;
+    private int player_coin,totalDuel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -110,6 +111,7 @@ public class HomeFragment extends Fragment {
         usernameTV.setText(loginUser);
         braincoin=view.findViewById(R.id.home_brain_coin);
         database= FirebaseDatabase.getInstance().getReference();
+        coinTradeControl(database,loginUser);
         Query query = database.child("news");
         query.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -132,27 +134,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-        Query coinQuery = database.child("coinTrades").orderByChild("receiverUserName").equalTo(loginUser);
-        coinQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                CoinTrade temp=new CoinTrade();
-                int player_coin=0;
-                for (DataSnapshot ss:snapshot.getChildren()) {
-                    temp = ss.getValue(CoinTrade.class);
-                    player_coin+=temp.getAmount();
-                }
-                System.out.println();
-                braincoin.setText(String.valueOf(player_coin));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
 
 
         Button logoutButton = (Button) view.findViewById(R.id.home_logout_button);
@@ -216,4 +197,55 @@ public class HomeFragment extends Fragment {
                 .create();
         dialog.show();
     }
+    public void coinTradeControl(DatabaseReference databaseReference,String oldName)
+    {
+        Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
+        coinQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CoinTrade temp=new CoinTrade();
+                int player_coin_sum=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp = ss.getValue(CoinTrade.class);
+                    player_coin_sum+=temp.getAmount();
+                }
+                System.out.println();
+                //braincoin.setText(String.valueOf(player_coin_sum));
+                player_coin=player_coin_sum;
+                coinTradeDecreaseControl(databaseReference);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void coinTradeDecreaseControl(DatabaseReference databaseReference)
+    {
+        Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo("BadAppCash");
+        coinQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                int duelCoin = 0;
+                CoinTrade temp=new CoinTrade();
+                for (DataSnapshot ss:snapshot.getChildren())
+                {
+                    temp = ss.getValue(CoinTrade.class);
+                    duelCoin+=temp.getAmount();
+                    totalDuel+=duelCoin;
+                }
+                player_coin=player_coin-duelCoin;
+                braincoin.setText(String.valueOf(player_coin));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+    }
+
 }

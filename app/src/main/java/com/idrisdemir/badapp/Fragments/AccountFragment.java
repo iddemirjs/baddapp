@@ -172,7 +172,7 @@ public class AccountFragment extends Fragment {
                         Toast.makeText(getContext(), "Please Enter valid gender(Male or Female)", Toast.LENGTH_SHORT).show();
                     }
                 }
-                if(!(member.getEmail().equalsIgnoreCase(email)))
+                if(!(member.getEmail().equalsIgnoreCase(email)) && email!="")
                 {
                     member.setEmail(email);
                     dbReference.child("users").child(uniqueID).setValue(member);

@@ -49,7 +49,7 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
     public DatabaseReference database;
     public RecyclerView quiz_recyclerView;
     public ArrayList<Integer> button_images=new ArrayList<Integer>();
-    private int player_energy;
+    private int player_energy,player_coin,totalDuel;
     private TextView braincoin,energycount;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -102,6 +102,7 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
         energycount=view.findViewById(R.id.energy_count);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         String oldName = sharedPref.getString("login","nologin");
+        coinTradeControl(database,oldName);
         Query query = database.child("category");
         query.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -120,26 +121,6 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
             @Override
             public void onCancelled(@NonNull DatabaseError error)
             {
-
-            }
-        });
-
-        Query coinQuery = database.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
-        coinQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                CoinTrade temp=new CoinTrade();
-                int player_coin=0;
-                for (DataSnapshot ss:snapshot.getChildren()) {
-                    temp = ss.getValue(CoinTrade.class);
-                    player_coin+=temp.getAmount();
-                }
-                System.out.println();
-                braincoin.setText(String.valueOf(player_coin));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -166,6 +147,59 @@ public class QuizFragment extends Fragment implements RecyclerAdapter.OnCategory
 
         return view;
     }
+
+    public void coinTradeControl(DatabaseReference databaseReference,String oldName)
+    {
+        Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
+        coinQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CoinTrade temp=new CoinTrade();
+                int player_coin_sum=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp = ss.getValue(CoinTrade.class);
+                    player_coin_sum+=temp.getAmount();
+                }
+                System.out.println();
+                //braincoin.setText(String.valueOf(player_coin_sum));
+                player_coin=player_coin_sum;
+                coinTradeDecreaseControl(databaseReference);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void coinTradeDecreaseControl(DatabaseReference databaseReference)
+    {
+        Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo("BadAppCash");
+        coinQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                int duelCoin = 0;
+                CoinTrade temp=new CoinTrade();
+                for (DataSnapshot ss:snapshot.getChildren())
+                {
+                    temp = ss.getValue(CoinTrade.class);
+                    duelCoin+=temp.getAmount();
+                    totalDuel+=duelCoin;
+                }
+                player_coin=player_coin-duelCoin;
+                braincoin.setText(String.valueOf(player_coin));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+    }
+
+
 
     private void startFillingRecyclerView(ArrayList<Category> categoryList,View view)
     {
