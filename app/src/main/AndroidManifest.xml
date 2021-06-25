@@ -20,7 +20,7 @@
             android:noHistory="true" >
 
         </activity>
-        <activity android:name=".DashboardActivity" />
+        <activity android:name=".DashboardActivity" android:noHistory="true"/>
         <activity
             android:name=".RegisterActivity"
             android:noHistory="true" />

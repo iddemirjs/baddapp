@@ -61,11 +61,11 @@ public class LoginActivity extends AppCompatActivity {
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            Member member = new Member();
+                            Member member=null;
                             for (DataSnapshot ss:snapshot.getChildren()) {
                                 member = ss.getValue(Member.class);
                             }
-                            if (member.getPassword().equals(password)){
+                            if (member != null && member.getPassword().equals(password)){
                                 // Local Depolayıcımızı oluşturalım.
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.putString("login" , member.getUsername());
