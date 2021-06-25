@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -32,7 +33,7 @@ import java.util.UUID;
 public class RegisterActivity extends AppCompatActivity {
 
     String username,password,againPassword,sex,email;
-    TextView tvUsername,tvPassword,tvAgainPassword, tvEmail;
+    TextView tvUsername,tvPassword,tvAgainPassword, tvEmail,emailError,passwordError,usernameError;
     RadioGroup rgSex;
     RadioButton rbSex;
     Button buttonRegister;
@@ -52,6 +53,9 @@ public class RegisterActivity extends AppCompatActivity {
         tvAgainPassword =  (TextView) findViewById(R.id.register_passwordagain);
         tvEmail = (TextView) findViewById(R.id.register_email);
         rgSex = (RadioGroup) findViewById(R.id.radio_sex);
+        emailError=(TextView) findViewById(R.id.email_error);
+        passwordError=(TextView) findViewById(R.id.password_error);
+        usernameError=(TextView) findViewById(R.id.username_error);
 
         rgSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -85,29 +89,39 @@ public class RegisterActivity extends AppCompatActivity {
                         // Gelen verilerin sayısını veren kod.
                         // long count = snapshot.getChildrenCount();
                         if (!snapshot.exists()){
-                            if (againPassword.equals(password)){
-                                // Userin benzersiz kimliğini oluşturduk.
-                                String uniqueId = UUID.randomUUID().toString();
-                                user.setUuid(uniqueId);
-                                // User veritabanına eklenmeye hazır.
-                                dbReference.child("users").child(uniqueId).setValue(user);
-                                EnergyTrade energyTrade = new EnergyTrade();
-                                energyTrade.setUuid(UUID.randomUUID().toString());
-                                energyTrade.setUsername(user.getUsername());
-                                energyTrade.setEnergyPiece(5);
-                                energyTrade.setTradeType("profit");
-                                dbReference.child("energyTrades").child(energyTrade.getUuid()).setValue(energyTrade);
-                                Toast.makeText(RegisterActivity.this, "Üyelik Başarılı", Toast.LENGTH_SHORT).show();
-                                buttonSound.start();
-                                Intent returnRegister = new Intent(RegisterActivity.this,LoginActivity.class);
-                                startActivity(returnRegister);
-                            }else{
-                                // Kullanıcı Şifrelerin Eşleşmesi için Uyarılmaslı.
-                                Toast.makeText(RegisterActivity.this, "Şifreler Eşleşmeli", Toast.LENGTH_SHORT).show();
+                            usernameError.setVisibility(View.INVISIBLE);
+                            if(!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                                emailError.setVisibility(View.INVISIBLE);
+                                if (againPassword.equals(password)){
+                                    emailError.setVisibility(View.INVISIBLE);
+                                    // Userin benzersiz kimliğini oluşturduk.
+                                    String uniqueId = UUID.randomUUID().toString();
+                                    user.setUuid(uniqueId);
+                                    // User veritabanına eklenmeye hazır.
+                                    dbReference.child("users").child(uniqueId).setValue(user);
+                                    EnergyTrade energyTrade = new EnergyTrade();
+                                    energyTrade.setUuid(UUID.randomUUID().toString());
+                                    energyTrade.setUsername(user.getUsername());
+                                    energyTrade.setEnergyPiece(5);
+                                    energyTrade.setTradeType("profit");
+                                    dbReference.child("energyTrades").child(energyTrade.getUuid()).setValue(energyTrade);
+                                    Toast.makeText(RegisterActivity.this, "Membership Successfull", Toast.LENGTH_SHORT).show();
+                                    buttonSound.start();
+                                    Intent returnRegister = new Intent(RegisterActivity.this,LoginActivity.class);
+                                    startActivity(returnRegister);
+                                }else{
+                                    // Kullanıcı Şifrelerin Eşleşmesi için Uyarılmaslı.
+                                    passwordError.setVisibility(View.VISIBLE);
+                                }
                             }
+                            else
+                            {
+                                emailError.setVisibility(View.VISIBLE);
+                            }
+
                         }else{
                             // Bu usernamenin veritabanında kayıtlı oldugu konusunda uyarılmalı.
-                            Toast.makeText(RegisterActivity.this, "Bu kullanıcı adı uygun değil.", Toast.LENGTH_SHORT).show();
+                            usernameError.setVisibility(View.VISIBLE);
                         }
                     }
 

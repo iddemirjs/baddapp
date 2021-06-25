@@ -168,4 +168,39 @@
             app:layout_constraintTop_toBottomOf="@+id/register_button" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/email_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Invalid email."
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/register_email"
+        app:layout_constraintStart_toStartOf="@+id/register_email"
+        app:layout_constraintTop_toBottomOf="@+id/register_email" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/password_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Passwords must match."
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/register_password"
+        app:layout_constraintStart_toStartOf="@+id/register_password"
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/username_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:text="This username is not appropriate."
+        app:layout_constraintEnd_toEndOf="@+id/register_username"
+        app:layout_constraintStart_toStartOf="@+id/register_username"
+        app:layout_constraintTop_toBottomOf="@+id/register_username" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
