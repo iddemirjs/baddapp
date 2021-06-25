@@ -104,7 +104,10 @@ public class DuelListFragment extends Fragment  implements  DuelListAdapter.Item
                 for (DataSnapshot ss:snapshot.getChildren())
                 {
                     duel = ss.getValue(BadGame.class);
-                    list.add(duel);
+                    if(Integer.valueOf(duel.getGameQuota())!=Integer.valueOf(duel.getPlayedMatchSize()));
+                    {
+                        list.add(duel);
+                    }
                 }
                 initDuelRecyclerView(list,view);
             }
@@ -153,7 +156,13 @@ public class DuelListFragment extends Fragment  implements  DuelListAdapter.Item
         {
             if(temp.getUuid()==badgame.getUuid() && player_energy>0)
             {
-                startDuelAlert(getContext(), temp);
+                if(badgame.getGameQuota()==badgame.getPlayedMatchSize())
+                {
+                    Toast.makeText(getContext(), "This game cannot be entered ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startDuelAlert(getContext(), temp);
+                }
             }
             else if(player_energy<=0)
             {

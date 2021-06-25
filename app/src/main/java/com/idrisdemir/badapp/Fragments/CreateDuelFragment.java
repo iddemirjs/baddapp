@@ -55,6 +55,7 @@ public class CreateDuelFragment extends Fragment {
     private String oldName;
     private Spinner spinner2;
     private int max_player=10,typed_coin=0,player_coin=0,player_energy=0;
+    int totalDuel=0;
     //private int max_player=10;
     private DatabaseReference databaseReference;
     Activity currentActivity;
@@ -104,6 +105,33 @@ public class CreateDuelFragment extends Fragment {
         return player_coin/typed_coin;
     }
 
+    public void coinTradeControl(DatabaseReference databaseReference)
+    {
+        Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
+        coinQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CoinTrade temp=new CoinTrade();
+                int player_coin_sum=0;
+                for (DataSnapshot ss:snapshot.getChildren()) {
+                    temp = ss.getValue(CoinTrade.class);
+                    player_coin_sum+=temp.getAmount();
+                }
+                System.out.println();
+                //braincoin.setText(String.valueOf(player_coin_sum));
+                player_coin=player_coin_sum;
+                coinTradeDecreaseControl(databaseReference);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
@@ -122,28 +150,7 @@ public class CreateDuelFragment extends Fragment {
         seekbar_quize_count=view.findViewById(R.id.seekbar_question_count);
         cost_duel_text=view.findViewById(R.id.cost_of_duel);
         make_match=view.findViewById(R.id.make_duel_button);
-
-
-        Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo(oldName);
-        coinQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                CoinTrade temp=new CoinTrade();
-                int player_coin_sum=0;
-                for (DataSnapshot ss:snapshot.getChildren()) {
-                    temp = ss.getValue(CoinTrade.class);
-                    player_coin_sum+=temp.getAmount();
-                }
-                System.out.println();
-                //braincoin.setText(String.valueOf(player_coin_sum));
-                player_coin=player_coin_sum;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        coinTradeControl(databaseReference);
 
         Query energyQuery = databaseReference.child("energyTrades").orderByChild("username").equalTo(oldName);
         energyQuery.addValueEventListener(new ValueEventListener() {
@@ -178,7 +185,8 @@ public class CreateDuelFragment extends Fragment {
                                     int questionCount=seekbar_quize_count.getProgress();
                                     BadGame duello=new BadGame(duelUid,oldName,spinner2.getSelectedItem().toString(),seekbar_player_count.getProgress(),0,questionCount,typed_coin);
                                     databaseReference.child("badgames").child(duello.getUuid()).setValue(duello);
-
+                                    CoinTrade dualTrade=new CoinTrade(String.valueOf(UUID.randomUUID()),oldName,"BadAppCash",typed_coin*seekbar_player_count.getProgress());
+                                    databaseReference.child("coinTrades").child(dualTrade.getUuid()).setValue(dualTrade);
                                     Intent intent=new Intent(getContext(), QuizActivity.class);
                                     intent.putExtra("category_name", duello.getCategoryName());
                                     intent.putExtra("bad_game", duello);
@@ -292,4 +300,31 @@ public class CreateDuelFragment extends Fragment {
         });
         return view;
     }
+
+    public void coinTradeDecreaseControl(DatabaseReference databaseReference)
+    {
+            Query coinQuery = databaseReference.child("coinTrades").orderByChild("receiverUserName").equalTo("BadAppCash");
+            coinQuery.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot)
+                {
+                    int duelCoin = 0;
+                    CoinTrade temp=new CoinTrade();
+                    for (DataSnapshot ss:snapshot.getChildren())
+                    {
+                        temp = ss.getValue(CoinTrade.class);
+                        duelCoin+=temp.getAmount();
+                        totalDuel+=duelCoin;
+                    }
+                    player_coin=player_coin-duelCoin;
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error)
+                {
+
+                }
+            });
+    }
+
+
 }
