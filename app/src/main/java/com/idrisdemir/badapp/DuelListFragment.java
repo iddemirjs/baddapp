@@ -126,9 +126,9 @@ public class DuelListFragment extends Fragment  implements  DuelListAdapter.Item
     {
         for (BadGame temp:list)
         {
-            if(temp.getUUID()==badgame.getUUID())
+            if(temp.getUuid()==badgame.getUuid())
             {
-                startDuelAlert(getContext(),temp.getUUID());
+                startDuelAlert(getContext(),temp.getUuid());
             }
         }
     }

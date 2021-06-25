@@ -162,7 +162,7 @@ public class CreateDuelFragment extends Fragment {
                                     String duelUid= UUID.randomUUID().toString();
                                     int questionCount=seekbar_quize_count.getProgress();
                                     BadGame duello=new BadGame(duelUid,oldName,spinner2.getSelectedItem().toString(),seekbar_player_count.getProgress(),0,questionCount,typed_coin);
-                                    databaseReference.child("badgames").child(duello.getUUID()).setValue(duello);
+                                    databaseReference.child("badgames").child(duello.getUuid()).setValue(duello);
                                 }
                             })
                             .setNegativeButton("Cancel", null)
