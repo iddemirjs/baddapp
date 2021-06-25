@@ -2,7 +2,9 @@ package com.idrisdemir.badapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +13,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +33,7 @@ import java.util.UUID;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView singUpTB,tvUsername,tvPassword;
+    TextView singUpTB,tvUsername,tvPassword,tvForgotPassword;
     String username,password;
     DatabaseReference databaseReference;
 
@@ -39,14 +43,22 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button loginButton = (Button) findViewById(R.id.loginbutton);
+        ConstraintLayout loginContainer = (ConstraintLayout) findViewById(R.id.login_container);
         singUpTB = (TextView) findViewById(R.id.signup_textbutton);
         tvUsername = (TextView) findViewById(R.id.username);
         tvPassword = (TextView) findViewById(R.id.password);
+        tvForgotPassword = (TextView) findViewById(R.id.forgotpassword_textbutton);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         final MediaPlayer buttonSound=MediaPlayer.create(this,R.raw.buttonclick2);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
+        loginContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideSoftKeyboard(LoginActivity.this);
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +73,9 @@ public class LoginActivity extends AppCompatActivity {
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+                                Toast.makeText(LoginActivity.this, "kayıt yok", Toast.LENGTH_SHORT).show();
+                            }
                             Member member=null;
                             for (DataSnapshot ss:snapshot.getChildren()) {
                                 member = ss.getValue(Member.class);
@@ -71,12 +86,14 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("login" , member.getUsername());
                                 editor.commit();
                                 // Local depolayıcımıza kaydettik.
-                                Toast.makeText(LoginActivity.this, member.getUsername()+ " ile login başarılı.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,  " Login action has been successfully with " + member.getUsername(), Toast.LENGTH_SHORT).show();
                                 buttonSound.start();
                                 Intent goMain = new Intent(LoginActivity.this, DashboardActivity.class);
                                 startActivity(goMain);
                             }else{
-                                Toast.makeText(LoginActivity.this, "Lütfen bilgilerinizi kontrol ediniz.", Toast.LENGTH_SHORT).show();
+                                tvForgotPassword.setText("Username or password is wrong.");
+                                tvForgotPassword.setTextColor(getResources().getColor(R.color.pinkColor));
+                                tvForgotPassword.setVisibility(View.VISIBLE);
                             }
 
 
@@ -89,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
 
                 }else{
-                    Toast.makeText(LoginActivity.this, "Alanları doldurunuz.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Please fill all area.", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -104,4 +121,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    public static void hideSoftKeyboard(Activity activity) {
+    InputMethodManager inputMethodManager =
+        (InputMethodManager) activity.getSystemService(
+            Activity.INPUT_METHOD_SERVICE);
+    if(inputMethodManager.isAcceptingText()){
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(),
+                0
+        );
+    }
+}
 }
